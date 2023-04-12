@@ -1,3 +1,6 @@
+import React from "react"
+import Footer  from "./Footer"
+
 function HomePage(){
     return(
     <div className="mt-[10vh] mb-[10vh]">
@@ -110,11 +113,6 @@ function HomePage(){
     </div>
 
  </div>
-      
-      
-      
-
-      
 
     )
 }export default HomePage

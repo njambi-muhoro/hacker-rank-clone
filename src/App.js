@@ -8,8 +8,8 @@ import HomePage from "./Components/HomePage"
 
 
 
-
 function App() {
+  
   return (
     <>
     <NavBar/>
@@ -24,7 +24,7 @@ function App() {
       <Route  path="/login" element={<Login/>} />
       <Route path="/register" element={<SignUp/>} />
 
-      </Routes>
+    </Routes>
     </>
   );
 }
