@@ -6,7 +6,6 @@ import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
 
 
-
 function NavBar(){
     const [navbar, setNavbar] = useState(false);
 

@@ -8,8 +8,8 @@ import HomePage from "./Components/HomePage"
 
 
 
-
 function App() {
+  
   return (
     <>
     <NavBar/>
