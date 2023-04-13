@@ -10,8 +10,8 @@ function NavBar(){
     const [navbar, setNavbar] = useState(false);
 
     return(
-        <div>
-            <nav className='w-full fixed top-0 left-0 right-0 z-10'>
+        <>
+            <nav className='w-full fixed top-0 left-0 right-0 z-10 lg:h-10vh '>
 			<div className='justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8'>
                 <div>
                 <div className='flex items-center justify-between py-3 md:py-5 md:block'>
@@ -59,15 +59,15 @@ function NavBar(){
 											Resources
 										</Link>
 									</li>
-                                    <div className='md:flex-col flex-wrap gap-8 ml-12 px-9 py-3 items-center'>
-                                    <li className='pb-4 text-xl bg-[#D9D9D9] w-full md:w-full mb-3 py-5 md:px-6 text-center border-b-2 md:border-b-0  hover:text-green-700  border-cyan-900  '>
-										<Link href='#about' onClick={() => setNavbar(!navbar)}>
+                                    <div className='flex flex-wrap gap-8 ml-12 px-9 py-3 items-center'>
+                                    <li className='pb-4 text-xl bg-[#D9D9D9]md:w-full mb-3 py-5 md:px-6 text-center border-b-2 md:border-b-0  hover:text-green-700  border-cyan-900  '>
+										<Link to='/login' onClick={() => setNavbar(!navbar)}>
 											Log In
 										</Link>
      
 									</li>
                                     <li className='pb-4 text-xl bg-[#077407] py-5 md:px-6 text-center border-b-2 md:border-b-0  hover:text-green-700  border-cyan-900  '>
-										<Link href='#about' onClick={() => setNavbar(!navbar)}>
+										<Link to='/signup' onClick={() => setNavbar(!navbar)}>
 											Sign Up
 										</Link>
      
@@ -80,7 +80,7 @@ function NavBar(){
             </div>
             </nav>
 
-        </div>
+        </>
 
 
          
