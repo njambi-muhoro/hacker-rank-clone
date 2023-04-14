@@ -71,14 +71,14 @@ export default function AuthProvider({children})
         })
     }
 // Register
-     const register = (email,username,userType, password) =>{
+     const register = (username,email, password, userType) =>{
         fetch(`http://localhost:3000/users`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                email,username,userType, password
+                username,email, password, userType
             })
         }
         )

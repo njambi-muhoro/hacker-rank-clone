@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 py-6">
 
-      <div className=" w-full lg:w-7xl mx-auto px-4 text-center">
+      <div className=" w-full lg:w-6xl mx-auto px-4 text-center">
         <div className="flex flex-wrap items-center justify-between">
           <div className="w-full">
             <h4 className="text-3xl text-white font-semibold text-center">
@@ -19,7 +19,7 @@ const Footer = () => {
             <ul className="flex flex-wrap list-none pl-0 mb-0 justify-center text-center">
               <li className="nav-item">
                 <a
-                  href="#"
+                  href="!#"
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 >
                   <FaTwitterSquare size ={20} className="mr-5" />
@@ -28,7 +28,7 @@ const Footer = () => {
               </li>
               <li className="nav-item">
                 <a
-                  href="#"
+                  href="!#"
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 >
                   <FaFacebookSquare size ={20} className="mr-5" />
@@ -37,7 +37,7 @@ const Footer = () => {
               </li>
               <li className="nav-item">
                 <a
-                  href="#"
+                  href="!#"
                   className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                 >
                   <FaLinkedin size ={20} className="mr-5" />
@@ -52,7 +52,7 @@ const Footer = () => {
             
         <div className="w-full lg:w-4/12 px-4">
             <div className="text-lg text-left text-gray-500 font-semibold py-1">
-                    © 2022 Hackerrank clone
+                    © 2023 Hackerrank clone
             </div>
             </div>
 
