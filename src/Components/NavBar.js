@@ -23,7 +23,9 @@ function NavBar(){
 						<div>
 							<div className='flex items-center justify-between py-3 md:py-5 md:block'>
 								{/* LOGO */}
-								<Link to='/'>
+								
+								<Link className='flex gap-2' to='/'>
+								<img id="feed-intro" class="logo-img-small" src="https://hrcdn.net/fcore/assets/work/header/hackerrank_logo-21e2867566.svg" alt="HackerRank Home"/>
 									<h2 className='text-2xl text-black-600 font-bold '>
 										HackerRank
 									</h2>
