@@ -18,12 +18,16 @@ function NavBar(){
 
     return (
 			<>
-				<nav className='w-full fixed bg-black text-white top-0 left-0 right-0 z-10 lg:h-8vh md:height-5vh '>
+				<nav className='w-full fixed bg-gray-800 text-white top-0 left-0 right-0 z-10 lg:h-[10vh] md:height-5vh '>
 					<div className='justify-between px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8'>
 						<div>
 							<div className='flex items-center justify-between py-3 md:py-5 md:block'>
 								{/* LOGO */}
-								<Link to='/'>
+								<Link className='flex gap-2' to='/'>
+									<img
+										src='https://hrcdn.net/fcore/assets/work/header/hackerrank_logo-21e2867566.svg'
+										alt='HackerRank Logo'
+									></img>
 									<h2 className='text-2xl text-black-600 font-bold '>
 										HackerRank
 									</h2>
@@ -49,27 +53,27 @@ function NavBar(){
 								<ul className='h-screen md:h-auto items-center justify-center md:flex'>
 									{!isLoggedIn && (
 										<>
-											<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+											<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 												<Link href='#about' onClick={() => setNavbar(!navbar)}>
 													Products
 												</Link>
 											</li>
-											<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+											<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 												<Link href='#about' onClick={() => setNavbar(!navbar)}>
 													Solutions
 												</Link>
 											</li>
-											<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+											<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 												<Link href='#blog' onClick={() => setNavbar(!navbar)}>
 													Resources
 												</Link>
 											</li>
-											<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+											<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 												<Link to='/login' onClick={() => setNavbar(!navbar)}>
 													Log In
 												</Link>
 											</li>
-											<li className='pb-2 text-xl py-3 md:px-6 text-center hover:text-green-700'>
+											<li className='pb-2 text-sm py-3 md:px-6 text-center hover:text-green-700'>
 												<Link to='/signup' onClick={() => setNavbar(!navbar)}>
 													Sign Up
 												</Link>
@@ -80,71 +84,61 @@ function NavBar(){
 										<>
 											{userType === "student" && (
 												<>
-													<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+													<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 														<Link
 															to='/dashboard'
 															onClick={() => setNavbar(!navbar)}
 														>
-															Prepare
+															Dashboard
 														</Link>
 													</li>
-													<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+													<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 														<Link
-															to='/dashboard'
+															to='/library'
 															onClick={() => setNavbar(!navbar)}
 														>
-															Certify
+															Library
 														</Link>
 													</li>
-													<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+													<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 														<Link
-															to='/dashboard'
+															to='/assessments'
 															onClick={() => setNavbar(!navbar)}
 														>
-															Compete
+															Assessments
 														</Link>
 													</li>
 												</>
 											)}
 											{userType === "TM" && (
 												<>
-													<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+													<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 														<Link
-															to='/admin-dashboard'
+															to='/dashboard'
 															onClick={() => setNavbar(!navbar)}
 														>
-															Candidates
+															Dashboard
 														</Link>
 													</li>
-													<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+													<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 														<Link
-															to='/admin-dashboard'
-															onClick={() => setNavbar(!navbar)}
-														>
-															Tests
-														</Link>
-													</li>
-													<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
-														<Link
-															to='/admin-dashboard'
-															onClick={() => setNavbar(!navbar)}
-														>
-															Interviews
-														</Link>
-													</li>
-													<li className='pb-2 text-xl py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
-														<Link
-															to='/admin-dashboard'
+															to='/library'
 															onClick={() => setNavbar(!navbar)}
 														>
 															Library
 														</Link>
 													</li>
+													<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
+														<Link
+															to='/assessments'
+															onClick={() => setNavbar(!navbar)}
+														>
+															Assessments
+														</Link>
+													</li>
 												</>
 											)}
-											<li className='pb-2 text-xl py-3 md:px-6 text-center hover:text-green-700'>
-												<Link onClick={() => logout()}>Log Out</Link>
-											</li>
+
 											<div className='relative inline-flex'>
 												<button
 													onClick={toggleMenu}
@@ -156,9 +150,7 @@ function NavBar(){
 														src='https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80'
 														alt='Maria'
 													/>
-													<span className='text-gray-600 font-medium truncate max-w-[7.5rem] dark:text-gray-400'>
-														Maria
-													</span>
+
 													<svg
 														className={`w-2.5 h-2.5 text-gray-600 ${
 															isOpen && "rotate-180"
@@ -198,12 +190,9 @@ function NavBar(){
 														>
 															Settings
 														</a>
-														<a
-															href='!#'
-															className='block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300'
-														>
-															Logout
-														</a>
+														<li className='pb-2 text-sm py-3 md:px-6  block px-4  text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300'>
+															<Link onClick={() => logout()}>Log Out</Link>
+														</li>
 													</div>
 												)}
 											</div>

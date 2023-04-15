@@ -6,7 +6,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("")
-  const [userType, setUserType] = useState("student")
+  const [userType, setUserType] = useState("")
  console.log(userType)
   function handleRegister(e) {
     e.preventDefault()
@@ -18,7 +18,7 @@ return(
   <div className="container h-full p-10">
     <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
       <div className="w-full lg:max-w-4xl">
-        <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
+        <div className="block rounded-lg bg-white shadow-lg mt-10 dark:bg-neutral-800">
           <div className="g-0 lg:flex lg:flex-wrap">
             {/* <!-- Left column container--> */}
             <div className="px-4 md:px-0 lg:w-6/12">
@@ -115,13 +115,11 @@ return(
                   {/* <!--Registration button--> */}
                   <div className="mb-12 pb-1 pt-1 text-center">
                     <button
-                      className="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
+                      className="  bg-green-500 mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
                       type="submit"
                       data-te-ripple-init
                       data-te-ripple-color="light"
-                      style={{
-                        background: " rgb(65,121,56",
-                      }}
+                    
                     >
                       Sign Up
                     </button>
@@ -132,13 +130,13 @@ return(
 
             {/* <!-- Right column container with background and description--> */}
             <div
-              className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none"
-              style={{
-                background:
-                  "black",
-              }}
+              className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none  bg-green-500"
+              // style={{
+              //   background:
+              //      "bg-green-500",
+              // }}
             >
-              <div className="px-4 py-6 text-white md:mx-6 md:p-12">
+              <div className="px-4 py-6 md:mx-6 md:p-12">
                 <h4 className="mb-6 text-xl font-semibold">
                   We are more than just a company
                 </h4>

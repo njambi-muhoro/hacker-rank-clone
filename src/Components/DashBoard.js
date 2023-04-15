@@ -22,9 +22,9 @@ const DashBoard = () => {
         <div className=''>
             <h1 className='ml-6 mt-6 '>We recommend</h1>
             <div className='mr-9 ml-9 ml-6 mt-6 py-12 bg-gray-500 rounded border md:box-content mt-3'>
-                <div className='ml-5 gap-96 flex justfy-between items-center'>
+                <div className='ml-5 gap-96 flex justify-between items-center'>
 
-                        <a href="#" class="block flex-grow max-w-sm p-6 bg-white rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <a href="!#" class="block flex-grow max-w-sm p-6 bg-white rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Notewor1</h5>
                             <p class="font-normal text-gray-700 dark:text-gray-400"></p>
                         </a>
