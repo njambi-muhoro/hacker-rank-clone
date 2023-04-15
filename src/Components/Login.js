@@ -21,8 +21,8 @@ function Login() {
 			<section class='gradient-form h-full bg-neutral-200 dark:bg-neutral-700'>
 				<div class='container h-full p-10'>
 					<div class='g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200'>
-						<div class='w-full lg:max-w-4xl h-60vh'>
-							<div class='block rounded-lg bg-white shadow-lg dark:bg-neutral-800'>
+						<div class='w-full lg:max-w-4xl'>
+							<div class='block rounded-lg bg-white mt-10 shadow-lg dark:bg-neutral-800'>
 								<div class='g-0 lg:flex lg:flex-wrap'>
 									{/* <!-- Left column container--> */}
 									<div class='px-4 md:px-0 lg:w-6/12'>
@@ -45,7 +45,7 @@ function Login() {
 												<div class='relative mb-4' data-te-input-wrapper-init>
 													<input
 														type='Email'
-														class='peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'
+														class='peer block min-h-[auto] w-full rounded border-3 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'
 														id='exampleFormControlInput1'
 														placeholder=' Enter your Email'
 														value={email}
@@ -63,7 +63,7 @@ function Login() {
 												<div class='relative mb-4' data-te-input-wrapper-init>
 													<input
 														type='password'
-														class='peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'
+														class='peer block min-h-[auto] w-full border-3 rounded bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0'
 														id='exampleFormControlInput11'
 														placeholder='Password'
 														value={password}
