@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Question = () => {
   const [title, setTitle] = useState("");
@@ -7,6 +7,15 @@ const Question = () => {
   const [rank, setRank] = useState("");
 
   const [questions, setQuestions] = useState([]);
+
+
+  useEffect(() => {
+    fetch("http://localhost:3000/katas")
+      .then((response) => response.json())
+      .then((data) => setQuestions(data))
+      .catch((error) => console.log(error));
+  }, []);
+  
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -34,14 +43,27 @@ const Question = () => {
       language: language,
       rank: rank,
     };
-    setQuestions([...questions, newQuestion]);
-    setTitle("");
-    setDescription("");
-    setRank("");
-    setLanguage([]);
+  
+    fetch("http://localhost:3000/katas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newQuestion)
+    })
+      .then(response => response.json())
+      .then(data => {
+        setQuestions([...questions, data]);
+        setTitle("");
+        setDescription("");
+        setRank("");
+        setLanguage([]);
+      })
+      .catch(error => console.log(error));
   };
+  
 
-  return (
+  return ( 
     <div className="flex">
       <div className="w-1/2 p-4">
         {questions.map((question, index) => (
@@ -63,7 +85,7 @@ const Question = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-xl font-bold mb-2"
               htmlFor="title"
             >
               Enter title of the question
@@ -80,7 +102,7 @@ const Question = () => {
 
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-xl font-bold mb-2"
               htmlFor="description"
             >
               Enter description
@@ -95,7 +117,7 @@ const Question = () => {
 
           <div className="mb-4">
             <label
-              className="block text-gray-700 text-sm font-bold mb-2"
+              className="block text-gray-700 text-xl font-bold mb-2"
               htmlFor="languages"
             >
               Select language
@@ -117,7 +139,7 @@ const Question = () => {
 
       <div className="mb-4">
         <label
-          className="block text-gray-700 text-sm font-bold mb-2"
+          className="block text-gray-700 text-xl font-bold mb-2"
           htmlFor="rank"
         >
           Select rank
