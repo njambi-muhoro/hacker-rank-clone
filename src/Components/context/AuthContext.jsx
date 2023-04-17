@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
 export const AuthContext = createContext();
@@ -8,7 +8,8 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({children}) 
 {
-  const navigate = useNavigate()
+    const navigate = useNavigate()
+    const [currentUser, setCurrentUser] = useState('')
 
     // login
     const login = (email, password) =>{
@@ -46,7 +47,11 @@ export default function AuthProvider({children})
             else if (response.user) {
                 // set the user token in the session storage
               sessionStorage.setItem('jwtToken', response.jwt);
-              sessionStorage.setItem('userTYpe', response.user.userType);
+                sessionStorage.setItem('userTYpe', response.user.userType);
+                sessionStorage.setItem('username', response.user.username);
+                 sessionStorage.setItem('userId', response.user.id);
+                setCurrentUser(response.user)
+                navigate('/dashboard')
                 // show success message 
                     const Toast = Swal.mixin({
                     toast: true,
@@ -106,6 +111,7 @@ export default function AuthProvider({children})
             else if (response.user) {
                 // show success message 
                 console.log(response)
+                navigate("/login")
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -138,7 +144,7 @@ export default function AuthProvider({children})
      }
     
     const contextData = {
-        login, logout, register
+        login, logout, register, currentUser
     }
 
   return (
