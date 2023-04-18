@@ -8,10 +8,10 @@ import AuthProvider from "./Components/context/AuthContext";
 import DashBoard from "./Components/DashBoard";
 import Library from "./Components/Library";
 import Assessments from "./Components/Assessments";
-// import CodeEditor from "./Components/CodeEditor";
 import Details from "./Components/Details";
-
-
+import Questions from "./Components/Details/Questions";
+import Candidates from "./Components/Details/Candidates";
+import Invite from "./Components/Details/Invite";
 
 function App() {
 	return (
@@ -24,11 +24,15 @@ function App() {
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<SignUp />} />
 					<Route path='/dashboard' element={<DashBoard />} />
-					<Route path="/library" element={<Library />} />
-					<Route path="/assessments" element={<Assessments />} />
-					{/* <Route path="/codeEditor" element={<CodeEditor/>}/> */}
-					<Route path="/details/:id" element={<Details/>}/>
+					<Route path='/library' element={<Library />} />
+					<Route path='/assessments' element={<Assessments />} />
+					<Route path='/details/:id' element={<Details />}>
+						<Route path='questions' element={<Questions  />} />
+						<Route path='candidates' element={<Candidates />} />
+						<Route path='invite' element={<Invite />} />
+					</Route>
 				</Routes>
+
 				<Footer />
 			</AuthProvider>
 		</>
