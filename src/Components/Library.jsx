@@ -17,34 +17,34 @@ function Library({search}) {
       });
   }, []);
 
-  const filteredKatas = katas.filter(k => k.name.toLowerCase().includes(search.toLowerCase()))
+  const filteredKatas = katas && katas.filter(k => k.name.includes(search))
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center mt-[10vh]">
+    <div className="min-h-screen bg-gray-100 flex flex-col justify-center mt-[10vh]">
       <div className="lg:max-w-6xl mx-auto px-10 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold mt-4 mb-4">Library</h1>
-      <div className="">
+        <div className="">
           {
-          filteredKatas.map(kata => (
-            <div key={kata.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
-              <h2 className="text-lg font-semibold mb-2">{kata.name}</h2>
-              <div>
-              {
-                (katas[0].description.split(/[\n]+/).map(sentence => {
-                  return (sentence)
-                })[0])
-              }
+            katas && katas.map(kata => (
+              <div key={kata.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
+                <h2 className="text-lg font-semibold mb-2">{kata.name}</h2>
+                <div>
+                  {
+                    (kata.description.split(/[\n]+/).map(sentence => {
+                      return (sentence)
+                    })[0])
+                  }
+                </div>
+                <div className="mt-4 flex justify-end">
+                  <button className="font-bold py-2 px-4 rounded" onClick={() => navigate(`/viewkata/${kata.id}`)}>
+                    View Kata
+                  </button>
+                </div>
+                <div>
+                  <span style={{ borderColor: kata.rankcolor}}>{kata.rank.name}</span>
+                </div>
               </div>
-              <div className="mt-4 flex justify-end">
-                <button className="font-bold py-2 px-4 rounded" onClick={() => navigate(`/viewkata/${kata.id}`)}>
-                  View Kata
-                </button>
-              </div>
-              <div>
-                <span style={{ borderColor: kata.rankcolor}}>{kata.rank.name}</span>
-              </div>
-            </div>
-          ))
+            ))
           }
         </div>
       </div>

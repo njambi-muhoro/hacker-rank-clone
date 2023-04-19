@@ -1,9 +1,9 @@
-import React,{useEffect} from "react";
+import React from "react";
 import { Outlet, Link, useParams } from "react-router-dom";
 
 function Details() {
   const { id } = useParams();
-console.log(id)
+
   
   return (
     <div className='min-h-screen bg-gray-100 items-center mt-[10vh]' style={{ minHeight: '100vh' }}>

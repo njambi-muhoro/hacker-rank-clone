@@ -50,19 +50,20 @@ function Questions() {
           </tr>
         </thead>
         <tbody>
-          {assessment?.katas?.map(kata => (
-            <tr key={kata.id}>
-              <td>{kata.name}</td>
-              <td>{kata.score}</td>
-              <td>{kata.type}</td>
-              <td>{kata.time}</td>
-              <td>{kata.skills.join(', ')}</td>
-              <td>
-                <button>Edit</button>
-                <button onClick={() => deleteKata(kata.id)}>Delete</button>
-              </td>
-            </tr>
-          ))}
+       {assessment?.katas?.map(kata => (
+  <tr key={kata.id}>
+    <td>{kata.name}</td>
+    <td>{kata.score}</td>
+    <td>{kata.type}</td>
+    <td>{kata.time}</td>
+    <td>{kata.skills ? kata.skills.join(', ') : ''}</td> // Check if kata.skills is defined
+    <td>
+      <button>Edit</button>
+      <button onClick={() => deleteKata(kata.id)}>Delete</button>
+    </td>
+  </tr>
+))}
+
         </tbody>
       </table>
     </div>
