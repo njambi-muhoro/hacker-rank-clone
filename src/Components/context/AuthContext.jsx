@@ -109,7 +109,7 @@ export default function AuthProvider({children})
                     title: 'Unable to Sign-up'
                     })
             }
-            else if (response.status===('created')) {
+            else if (response.status===("created")) {
                 // show success message 
                 console.log(response)
                 navigate("/login")
