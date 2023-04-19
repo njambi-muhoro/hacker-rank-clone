@@ -33,6 +33,10 @@ function App() {
 						<Route path='candidates' element={<Candidates />} />
 						<Route path='invite' element={<Invite />} />
 					</Route>
+					<Route>
+						<Route path='Questions' element={<QuestionPage />} />
+					</Route>
+					
 				</Routes>
 
 				<Footer />
