@@ -41,12 +41,12 @@ const handleSubmit = (e) => {
   })
 }
     useEffect(() => {
-    
+  
   // fetch katas
   fetch('http://localhost:3000/katas')
     .then(res => res.json())
     .then(data => setKatas(data));
-
+     
   fetch(`/assessments`, {
     method: "GET",
     headers: {

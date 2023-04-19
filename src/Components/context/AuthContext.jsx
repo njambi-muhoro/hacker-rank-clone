@@ -75,9 +75,11 @@ export default function AuthProvider({children})
             }
         })
     }
+
 // Register
     const register = (username,email,userType, password) => {
          console.log("userType:", userType); // add this line to debug
+
         fetch(`http://localhost:3000/users`,{
             method: "POST",
             headers:{
@@ -109,6 +111,7 @@ export default function AuthProvider({children})
                     title: 'Unable to Sign-up'
                     })
             }
+
             else if (response.status==='created') {
                 // show success message 
                 navigate('/login')
@@ -134,6 +137,7 @@ export default function AuthProvider({children})
                 
             }
         })
+         
     }
     
      // Logout

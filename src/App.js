@@ -14,27 +14,37 @@ import Questions from "./Components/Details/Questions";
 import Candidates from "./Components/Details/Candidates";
 import Invite from "./Components/Details/Invite";
 
+import { useState } from "react";
+import ViewKata from "./Components/ViewKata";
+import Email from "./Components/Email";
+
 
 function App() {
+	const [search, setSearch] = useState("")
+	function handleSearch(value){
+     setSearch(value)
+	}
 	return (
 		<>
 			<AuthProvider>
-				<NavBar />
 
-				<Routes>
+				<NavBar  search = {search} handleSearch={handleSearch}/>
+				<div className="min-h-[70vh]">
+					<Routes>
+					<Route path="/viewkata/:kata_id" element={<ViewKata />} />
 					<Route path='/' element={<HomePage />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<SignUp />} />
 					<Route path='/dashboard' element={<DashBoard />} />
 					<Route path='/library' element={<Library />} />
 					<Route path='/assessments' element={<Assessments />} />
+					<Route path='/email' element={<Email />} />
 					<Route path='/details/:id' element={<Details />}>
 						<Route path='questions' element={<Questions  />} />
 						<Route path='candidates' element={<Candidates />} />
-						<Route path='invite' element={<Invite />} />
-					</Route>
-				</Routes>
-
+						<Route path='invite' element={<Invite />} /></Route>
+					</Routes>
+				</div>
 				<Footer />
 			</AuthProvider>
 		</>
