@@ -5,9 +5,9 @@ import { useState } from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
 import { AuthContext } from './context/AuthContext';
+import Search from './Search';
 
-
-function NavBar(){
+function NavBar({search,handleSearch}){
 	const [navbar, setNavbar] = useState(false);
 	const { logout } = useContext(AuthContext);
 	const isLoggedIn = sessionStorage.getItem("jwtToken") ? true : false;
@@ -18,7 +18,7 @@ function NavBar(){
 
     return (
 			<>
-				<nav className='w-full fixed bg-gray-800 text-white top-0 left-0 right-0 z-10 lg:h-[10vh] md:height-5vh '>
+				<nav id = "nav" className='w-full fixed bg-gray-800 text-white top-0 left-0 right-0 z-10'>
 					<div className='justify-between px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8'>
 						<div>
 							<div className='flex items-center justify-between py-3 md:py-5 md:block'>
@@ -84,8 +84,10 @@ function NavBar(){
 									)}
 									{isLoggedIn && (
 										<>
+										 <Search search={search} handleSearch={handleSearch}/>
 											{userType === "student" && (
 												<>
+												  
 													<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
 														<Link
 															to='/dashboard'
@@ -208,6 +210,6 @@ function NavBar(){
 			</>
 		);
 }
-export default NavBar
+export default NavBar;
 
 

@@ -1,5 +1,5 @@
 import React from "react"
-import Footer  from "./Footer"
+
 
 function HomePage(){
     return(
@@ -40,9 +40,11 @@ function HomePage(){
             
             
                 <div className="text-center text-sm text-gray-600 mt-10">
+                    <p>
                         Tech hiring needs a reset. From prepping for jobs and practicing coding to running<br />
                         a world-class technical interview, give developers the tools they need to showcase<br />
                         their skills, passion, and potential.
+                        </p>
                 </div>
 
                 <div className="bg-black lg:p-6 max-w-screen-lg mx-auto grid grid-cols-1 sm:grid-cols-2 gap-8 rounded-lg mt-10">
@@ -115,4 +117,4 @@ function HomePage(){
  </div>
 
     )
-}export default HomePage
+}export default HomePage;

@@ -75,8 +75,9 @@ export default function AuthProvider({children})
             }
         })
     }
-// Register
-     const register = (username,email, password, userType) =>{
+// Register username,email,userType, password
+     const register = (username,email,userType, password) =>{
+        
         fetch(`http://localhost:3000/users`,{
             method: "POST",
             headers:{
