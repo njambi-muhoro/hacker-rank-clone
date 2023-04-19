@@ -1,22 +1,46 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 
 const DashBoard = () => {
    
     const username = sessionStorage.getItem("username");
     const isLoggedIn = sessionStorage.getItem("jwtToken") ? true : false;
-		const userType = sessionStorage.getItem("userTYpe");
+	const userType = sessionStorage.getItem("userTYpe");
+
+	const [navbarHeight, setNavbarHeight] = useState(0)
+
+	window.addEventListener("resize", () => {
+		syncHeight()
+	})
+
+	function syncHeight() {
+		const navbar = document.getElementById("nav")
+		setNavbarHeight(navbar.offsetHeight)
+	}
+
+	useEffect(() => {
+		syncHeight()
+	}, [])
+
   return (
-      <div className='mt-12 min-h-[100vh] justify-center items-center'>
-          {isLoggedIn ? (
-              <></>
-          ) : (<>
-                  navigate('/login')
-          </>)} 
+		<div className='mt-12 min-h-[100vh] justify-center items-center'>
+			{/* {isLoggedIn ? (
+				<>
+					{userType === "student" ? (
+						<div>This is the student view</div>
+					) : userType === "tm" ? (
+						<div>This is the tm view</div>
+					) : null}
+				</>
+			) : (
+				navigate("/login")
+			)} */}
+
+
 			<header className='theme-m bg-gradient-to-br from-[#11639c] via-[#097bbf] to-[#00ace0] text-white mt-[6vh] justify-center items-center'>
 				<div className='lg:max-w-6xl mx-auto px-10'>
 					<h1 className='text-3xl font-md py-4 '>
-                      Welcome <span className='text-white'>{username}</span>!
+						Welcome <span className='text-white'>{username}</span>!
 					</h1>
 					<p className=' text-xs py-2 text-gray-300'>
 						We are here to help you get your dream job. Let’s get started with
@@ -52,54 +76,56 @@ const DashBoard = () => {
 						View all
 					</a>
 				</div>
-				<div className=' grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 lg:max-w-6xl mx-auto px-10 bg-gray-100 rounded-lg p-6 flex items-center'>
-					<div className='mt-6 '>
-						<img
-							src='https://hrcdn.net/fcore/assets/dashboard/lady_practicing-1add890f1f.svg'
-							alt=''
-							className='w-40 h-40 mx-auto mb-4'
-						/>
-					</div>
-					<div className=''>
-						<h3 className='text-lg font-bold mb-2'>1 Week Preparation Kit</h3>
-						<div className='text-sm text-gray-700 mb-2'>
-							<span>Challenges: </span>
-							<span className='font-bold'>21</span>
-							<span>, Mock Tests: </span>
-							<span className='font-bold'>6</span>
-							<span>, Attempts: </span>
-							<span className='font-bold'>590206</span>
+				<div className='px-10 bg-gray-100 m-4 md:w-3/4 md:mx-auto flex flex-col md:flex-row rounded-lg p-6 items-center'>
+					<div className='flex items-center'>
+						<div className=' w-40 p-3'>
+							<img
+								src='https://hrcdn.net/fcore/assets/dashboard/lady_practicing-1add890f1f.svg'
+								alt=''
+								className=' mx-auto mb-4'
+							/> 
 						</div>
-						<div className='flex flex-wrap mb-2'>
-							<a
-								href='!#'
-								className='mr-2 mb-2 px-3 py-1 bg-gray-200 text-gray-500 rounded-full text-sm font-medium hover:bg-gray-300 hover:text-gray-600'
-							>
-								Problem Solving (Basic)
-							</a>
-							<a
-								href='!#'
-								className='mr-2 mb-2 px-3 py-1 bg-gray-200 text-gray-500 rounded-full text-sm font-medium hover:bg-gray-300 hover:text-gray-600'
-							>
-								Problem Solving (Intermediate)
-							</a>
-							<a
-								href='!#'
-								className='mr-2 mb-2 px-3 py-1 bg-gray-200 text-gray-500 rounded-full text-sm font-medium hover:bg-gray-300 hover:text-gray-600'
-							>
-								+1 more
-							</a>
+						<div className=''>
+							<h3 className='text-lg font-bold mb-2'>1 Week Preparation Kit</h3>
+							<div className='text-sm text-gray-700 mb-2'>
+								<span>Challenges: </span>
+								<span className='font-bold'>21</span>
+								<span>, Mock Tests: </span>
+								<span className='font-bold'>6</span>
+								<span>, Attempts: </span>
+								<span className='font-bold'>590206</span>
+							</div>
+							<div className='flex flex-wrap mb-2'>
+								<a
+									href='!#'
+									className='mr-2 mb-2 px-3 py-1 bg-gray-200 text-gray-500 rounded-full text-sm font-medium hover:bg-gray-300 hover:text-gray-600'
+								>
+									Problem Solving (Basic)
+								</a>
+								<a
+									href='!#'
+									className='mr-2 mb-2 px-3 py-1 bg-gray-200 text-gray-500 rounded-full text-sm font-medium hover:bg-gray-300 hover:text-gray-600'
+								>
+									Problem Solving (Intermediate)
+								</a>
+								<a
+									href='!#'
+									className='mr-2 mb-2 px-3 py-1 bg-gray-200 text-gray-500 rounded-full text-sm font-medium hover:bg-gray-300 hover:text-gray-600'
+								>
+									+1 more
+								</a>
+							</div>
+							<p className='text-xs text-gray-700 mb-3'>
+								This Interview Preparation Kit has challenges curated by our
+								experts for you to prepare and ace your interview in a week's
+								time.
+							</p>
 						</div>
-						<p className='text-xs text-gray-700 mb-3'>
-							This Interview Preparation Kit has challenges curated by our
-							experts for you to prepare and ace your interview in a week's
-							time.
-						</p>
 					</div>
-					<div className='mt-10 ml-9 '>
+					<div className='flex w-1/3 justify-center border-black'>
 						<a
 							href='!#'
-							className='mt-4 px-4 py-2 bg-[#077407] text-white rounded-lg font-medium hover:bg-[#077407] hover:text-white '
+							className='px-4 py-2 block bg-[#077407] text-white rounded-lg font-medium hover:bg-[#077407] hover:text-white '
 						>
 							Start Preparation
 						</a>
@@ -242,10 +268,12 @@ const DashBoard = () => {
 							Create a Job Winning Resume
 						</h3>
 					</div>
+					<div>
 					<p className='text-white mb-10'>
 						Boost your chances of landing that dream job by building fine-tuned
 						resumes that stand out.
 					</p>
+					</div>
 					<div className='mt-10'>
 						<a
 							href='!#'
@@ -267,4 +295,4 @@ const DashBoard = () => {
 	);
 }
 
-export default DashBoard
+export default DashBoard;

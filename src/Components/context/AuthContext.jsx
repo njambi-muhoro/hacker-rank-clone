@@ -75,9 +75,11 @@ export default function AuthProvider({children})
             }
         })
     }
+
 // Register
     const register = (username,email,userType, password) => {
          console.log("userType:", userType); // add this line to debug
+
         fetch(`http://localhost:3000/users`,{
             method: "POST",
             headers:{
@@ -109,10 +111,10 @@ export default function AuthProvider({children})
                     title: 'Unable to Sign-up'
                     })
             }
-            else if (response.user) {
+
+            else if (response.status==='created') {
                 // show success message 
-                console.log(response)
-                navigate("/login")
+                navigate('/login')
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -135,13 +137,14 @@ export default function AuthProvider({children})
                 
             }
         })
+         
     }
     
      // Logout
      const logout = () =>{
        sessionStorage.clear();
        localStorage.clear();
-             navigate("/login");
+             navigate('/login');
      }
     
     const contextData = {
