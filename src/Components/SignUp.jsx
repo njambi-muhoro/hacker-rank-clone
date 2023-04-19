@@ -6,6 +6,7 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("")
+
   const [userType, setUserType] = useState('student')
 
   function handleRegister(e) {
@@ -50,7 +51,7 @@ return(
 														onChange={(e) => setUsername(e.target.value)}
                     />
                     <label
-                      for="exampleFormControlInput1"
+                      htmlFor="exampleFormControlInput1"
                       className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary-600 peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                     >
                       User Name
@@ -68,7 +69,7 @@ return(
 													onChange={(e) => setEmail(e.target.value)}
                     />
                     <label
-                      for="exampleFormControlInput1"
+                      htmlFor="exampleFormControlInput1"
                       className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary-600 peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                     >
                       Email address
@@ -86,7 +87,7 @@ return(
 														onChange={(e) => setPassword(e.target.value)}
                     />
                     <label
-                      for="block text-gray-700 text-sm font-bold mb-2"
+                      htmlFor="block text-gray-700 text-sm font-bold mb-2"
                       className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary-600 peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                     >
                       Password
@@ -175,4 +176,4 @@ return(
   </div>
 </section>
 )
-}export default SignUp
+}export default SignUp;
