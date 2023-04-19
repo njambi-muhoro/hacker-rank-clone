@@ -1,4 +1,5 @@
 import SignUp from "./Components/SignUp";
+import QuestionPage from "./Components/QuestionPage";
 import { Routes, Route } from "react-router";
 import NavBar from "./Components/NavBar";
 import Login from "./Components/Login";
@@ -12,8 +13,11 @@ import Details from "./Components/Details";
 import Questions from "./Components/Details/Questions";
 import Candidates from "./Components/Details/Candidates";
 import Invite from "./Components/Details/Invite";
+
 import { useState } from "react";
 import ViewKata from "./Components/ViewKata";
+import Email from "./Components/Email";
+
 
 function App() {
 	const [search, setSearch] = useState("")
@@ -23,17 +27,19 @@ function App() {
 	return (
 		<>
 			<AuthProvider>
+
 				<NavBar  search = {search} handleSearch={handleSearch}/>
 				<div className="min-h-[70vh]">
 					<Routes>
-						<Route path='/' element={<HomePage />} />
-						<Route path='/login' element={<Login />} />
-						<Route path='/signup' element={<SignUp />} />
-						<Route path='/dashboard' element={<DashBoard />} />
-						<Route path='/library' element={<Library search={search} />} />
-						<Route path='/assessments' element={<Assessments />} />
-						<Route path="/viewkata/:kata_id" element={<ViewKata />} />
-						<Route path='/details/:id' element={<Details />}>
+					<Route path="/viewkata/:kata_id" element={<ViewKata />} />
+					<Route path='/' element={<HomePage />} />
+					<Route path='/login' element={<Login />} />
+					<Route path='/signup' element={<SignUp />} />
+					<Route path='/dashboard' element={<DashBoard />} />
+					<Route path='/library' element={<Library />} />
+					<Route path='/assessments' element={<Assessments />} />
+					<Route path='/email' element={<Email />} />
+					<Route path='/details/:id' element={<Details />}>
 						<Route path='questions' element={<Questions  />} />
 						<Route path='candidates' element={<Candidates />} />
 						<Route path='invite' element={<Invite />} /></Route>

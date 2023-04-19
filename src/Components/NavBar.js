@@ -41,6 +41,7 @@ function NavBar({search,handleSearch}){
 										className='p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border'
 										onClick={() => setNavbar(!navbar)}
 									>
+
 										{navbar ? <AiOutlineClose /> : <GiHamburgerMenu />}
 									</button>
 								</div>
@@ -48,6 +49,7 @@ function NavBar({search,handleSearch}){
 						</div>
 						<div>
 							<div
+
 								className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
 									navbar ? "p-12 md:p-0 block" : "hidden"
 								}`}

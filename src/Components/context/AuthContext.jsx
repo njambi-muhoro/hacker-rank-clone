@@ -75,16 +75,18 @@ export default function AuthProvider({children})
             }
         })
     }
-// Register username,email,userType, password
-     const register = (username,email,userType, password) =>{
-        
+
+// Register
+    const register = (username,email,userType, password) => {
+         console.log("userType:", userType); // add this line to debug
+
         fetch(`http://localhost:3000/users`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                username,email, password, userType
+               username,email,userType, password
             })
         }
         )
@@ -109,7 +111,7 @@ export default function AuthProvider({children})
                     title: 'Unable to Sign-up'
                     })
             }
-            else if (response.user) {
+            else if (response.status===("created")) {
                 // show success message 
                 console.log(response)
                 navigate("/login")
@@ -135,6 +137,7 @@ export default function AuthProvider({children})
                 
             }
         })
+         
     }
     
      // Logout

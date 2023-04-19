@@ -6,10 +6,12 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("")
-  const [userType, setUserType] = useState("student")
- 
+
+  const [userType, setUserType] = useState('student')
+
   function handleRegister(e) {
     e.preventDefault()
+    console.log(username,email,userType, password)
     register(username,email,userType, password)
   }
 return(
@@ -100,14 +102,19 @@ return(
                     >
                       Click to select User
                     </label>
-                    <select
-                      className="shadow appearance-none border-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="userType"
-                        value={userType} onChange={(e => setUserType(e.target.value))}
-                    >
-                      <option value="student">Student</option>
-                      <option value="TM">TM</option>
-                    </select>
+               <select
+  className="shadow appearance-none border-3 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+  id="userType"
+  value={userType}
+  onChange={(e) => {
+    console.log(e.target.value); // add this line to debug
+    setUserType(e.target.value);
+  }}
+>
+  <option value="student">Student</option>
+  <option value="TM">TM</option>
+</select>
+
                   </div>
 
                   {/*  */}
