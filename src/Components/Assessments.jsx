@@ -47,7 +47,7 @@ const handleSubmit = (e) => {
     .then(res => res.json())
     .then(data => setKatas(data));
      
-  fetch(`/assessments`, {
+  fetch(`http://localhost:3000/assessments`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
@@ -104,7 +104,7 @@ function handleKataSelect( id) {
     <div className="min-h-[100vh] ">
       <section className="w-full mt-[10vh]">
         <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8">
-          <div className="w-full flex items-center justify-between px-3 h-40 max-w-lg bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4 ">
+          <div className="w-full flex items-center justify-between px-3 h-40  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4 ">
             <div
               className="text-sm"
               style={{ width: '70%', padding: '10px' }}
@@ -134,7 +134,7 @@ function handleKataSelect( id) {
     <h1>My Assessments</h1>
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {assessments && assessments.map((assessment) => (
+        {Array.isArray(assessments) && assessments.map((assessment) => (
           <div key={assessment.id} className="max-w-sm rounded overflow-hidden shadow-lg relative">
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2">{assessment.title}</div>
