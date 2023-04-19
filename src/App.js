@@ -1,4 +1,5 @@
 import SignUp from "./Components/SignUp";
+import QuestionPage from "./Components/QuestionPage";
 import { Routes, Route } from "react-router";
 import NavBar from "./Components/NavBar";
 import Login from "./Components/Login";
@@ -12,6 +13,7 @@ import Details from "./Components/Details";
 import Questions from "./Components/Details/Questions";
 import Candidates from "./Components/Details/Candidates";
 import Invite from "./Components/Details/Invite";
+
 
 function App() {
 	return (

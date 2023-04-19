@@ -1,5 +1,5 @@
 import React from "react"
-import Footer  from "./Footer"
+
 
 function HomePage(){
     return(
@@ -25,8 +25,14 @@ function HomePage(){
             
             </div>
 
+<<<<<<< HEAD
+            <div className="flex justify-center text-xl text-gray-600 mt-10">
+                Over 40% of developers worldwide and 3,000 companies use HackerRank
+                </div>
+=======
             <div className="flex justify-center text-xl text-gray-600 mt-10 mb-10">
                 Over 40% of developers worldwide and 3,000 companies use HackerRank</div>
+>>>>>>> 38270517494199dcb6d90ff64d99786a8ca28f19
             </div>
         </div>
         <div className="bg-[#FBFBFF] p-10 ">
@@ -63,6 +69,7 @@ function HomePage(){
                         <img src="https://www.hackerrank.com/wp-content/uploads/2022/09/community.jpg" alt=""/>
                     </div>
                 </div>
+                
             </div>
         </div>
     <div className="lg:w-7xl p-10">
