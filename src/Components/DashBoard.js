@@ -23,16 +23,24 @@ const DashBoard = () => {
 	}, [])
 
   return (
-      <div style={{marginTop: navbarHeight+"px" }} className='min-h-[100vh] justify-center items-center'>
-          {isLoggedIn ? (
-              <></>
-          ) : (<>
-                  navigate('/login')
-          </>)} 
+		<div className='mt-12 min-h-[100vh] justify-center items-center'>
+			{/* {isLoggedIn ? (
+				<>
+					{userType === "student" ? (
+						<div>This is the student view</div>
+					) : userType === "tm" ? (
+						<div>This is the tm view</div>
+					) : null}
+				</>
+			) : (
+				navigate("/login")
+			)} */}
+
+
 			<header className='theme-m bg-gradient-to-br from-[#11639c] via-[#097bbf] to-[#00ace0] text-white mt-[6vh] justify-center items-center'>
 				<div className='lg:max-w-6xl mx-auto px-10'>
 					<h1 className='text-3xl font-md py-4 '>
-                      Welcome <span className='text-white'>{username}</span>!
+						Welcome <span className='text-white'>{username}</span>!
 					</h1>
 					<p className=' text-xs py-2 text-gray-300'>
 						We are here to help you get your dream job. Let’s get started with

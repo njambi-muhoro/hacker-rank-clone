@@ -111,10 +111,10 @@ export default function AuthProvider({children})
                     title: 'Unable to Sign-up'
                     })
             }
-            else if (response.status===("created")) {
+
+            else if (response.status==='created') {
                 // show success message 
-                console.log(response)
-                navigate("/login")
+                navigate('/login')
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -144,7 +144,7 @@ export default function AuthProvider({children})
      const logout = () =>{
        sessionStorage.clear();
        localStorage.clear();
-             navigate("/login");
+             navigate('/login');
      }
     
     const contextData = {
