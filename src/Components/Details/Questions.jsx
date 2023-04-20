@@ -50,7 +50,7 @@ function Questions() {
           </tr>
         </thead>
         <tbody>
-       {assessment?.katas?.map(kata => (
+       {assessment.katas.map(kata => (
   <tr key={kata.id}>
     <td>{kata.name}</td>
     <td>{kata.score}</td>

@@ -1,4 +1,5 @@
 import SignUp from "./Components/SignUp";
+import React from "react"
 // import QuestionPage from "./Components/QuestionPage";
 import { Routes, Route } from "react-router";
 import NavBar from "./Components/NavBar";
