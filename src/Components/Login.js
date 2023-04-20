@@ -10,7 +10,7 @@ function Login() {
   function handleLogin(e) {
     	e.preventDefault();
 			// handle login logic here
-	  console.log(email, password)
+	//   console.log(email, password)
 		  login(email, password);
 	
     

@@ -77,17 +77,17 @@ function NavBar({search,handleSearch}){
 								{!isLoggedIn && (
 									<>
 										<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
-											<Link href='#about' onClick={() => setNavbar(!navbar)}>
+											<Link to='/Products' onClick={() => setNavbar(!navbar)}>
 												Products
 											</Link>
 										</li>
 										<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
-											<Link to='/details' onClick={() => setNavbar(!navbar)}>
+											<Link to='/Solutions' onClick={() => setNavbar(!navbar)}>
 												Solutions
 											</Link>
 										</li>
 										<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
-											<Link href='#blog' onClick={() => setNavbar(!navbar)}>
+											<Link to='/Resources' onClick={() => setNavbar(!navbar)}>
 												Resources
 											</Link>
 										</li>
