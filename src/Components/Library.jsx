@@ -7,7 +7,7 @@ function Library({search}) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch('http://localhost:4500/katas')
+    fetch('http://localhost:3000/katas')
       .then(res => res.json())
       .then(response => {
         setKatas(response);
