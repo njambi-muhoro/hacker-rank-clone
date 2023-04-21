@@ -1,38 +1,31 @@
-import React, { useState } from 'react';
-import SimpleCodeEditor from 'react-simple-code-editor';
-import { highlight, languages } from 'prismjs';
-import 'prismjs/components/prism-python';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-ruby';
-import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-c';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+import { Controlled as CodeMirror } from 'react-codemirror2';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/python/python';
+import 'codemirror/mode/ruby/ruby';
+import 'codemirror/mode/clike/clike';
+import 'codemirror/mode/rails/rails';
 
-const CodeEditor = ({ language }) => {
-  const [code, setCode] = useState('');
-  const handleCodeChange = (newCode) => {
-    setCode(newCode);
-  };
-  const languageMap = {
-    python: languages.python,
-    javascript: languages.javascript,
-    ruby: languages.ruby,
-    java: languages.java,
-    c: languages.c,
-  };
-  const selectedLanguage = languageMap[language];
+function CodeEditor(props) {
+  const { language, code, onBeforeChange } = props;
+
   return (
-    <SimpleCodeEditor
-      value={code}
-      onValueChange={handleCodeChange}
-      highlight={(code) => highlight(code, selectedLanguage)}
-      padding={10}
-      style={{
-        fontFamily: '"Fira code", "Fira Mono", monospace',
-        fontSize: 12,
-        border: '1px solid #ccc',
-      }}
-    />
+    <div className="h-full">
+      <CodeMirror
+        className="h-full"
+        value={code}
+        options={{
+          mode: language,
+          theme: 'material',
+          lineNumbers: true,
+        }}
+        onBeforeChange={(editor, data, value) => {
+          onBeforeChange(value);
+        }}
+      />
+    </div>
   );
-};
+}
 
 export default CodeEditor;
