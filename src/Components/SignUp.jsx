@@ -11,8 +11,8 @@ function SignUp() {
 
   function handleRegister(e) {
     e.preventDefault()
-    console.log(username,email,userType, password)
-    register(username,email,userType, password)
+    console.log(email, password, username, userType)
+    register(email, password, username, userType)
   }
 return(
   <section className="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">

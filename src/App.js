@@ -18,6 +18,7 @@ import Invite from "./Components/Details/Invite";
 import { useState } from "react";
 import ViewKata from "./Components/ViewKata";
 import Email from "./Components/Email";
+import Profile from "./Components/Profile";
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 					<Route path='/library' element={<Library />} />
 					<Route path='/assessments' element={<Assessments />} />
 					<Route path='/email' element={<Email />} />
+					<Route path='/profile' element={<Profile />} />
 					<Route path='/details/:id' element={<Details />}>
 						<Route path='questions' element={<Questions  />} />
 						<Route path='candidates' element={<Candidates />} />
