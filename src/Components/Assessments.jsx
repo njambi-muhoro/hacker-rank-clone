@@ -6,6 +6,8 @@ import Modal from 'react-modal';
 
 function Assessments() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const isLoggedIn = sessionStorage.getItem("jwtToken") ? true : false;
+	const userType = sessionStorage.getItem("userTYpe");
   const [title, setTitle] = useState("")
   const [userId, setUserId] = useState(sessionStorage.getItem("userId"))
   const [duration, setDuration] = useState("")
@@ -102,6 +104,18 @@ function handleKataSelect( id) {
    
   return (
     <div className="min-h-[100vh] ">
+      {isLoggedIn ? (
+				<>
+          {userType === "student" ? (
+            <>
+              <section className="w-full mt-[10vh]">
+                <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8">
+                  <h1>Welcome back. Please attempt the assessments</h1>
+                </div>
+                </section>
+            </>
+          ) : userType === "TM" ? (
+          <>
       <section className="w-full mt-[10vh]">
         <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8">
           <div className="w-full flex items-center justify-between px-3 h-40  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4 ">
@@ -128,8 +142,8 @@ function handleKataSelect( id) {
             </div>
           </div>
         </div>
-      </section>
-     <section className="w-full">
+                </section>
+                 <section className="w-full">
   <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:px-8">
     <h1>My Assessments</h1>
     <div>
@@ -179,6 +193,13 @@ function handleKataSelect( id) {
     </div>
   </div>
 </section>
+          </>
+          		) : null}
+				</>
+      ) : (
+         <></>
+			)}
+    
 
     <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={{
   content: {
