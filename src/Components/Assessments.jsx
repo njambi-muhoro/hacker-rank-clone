@@ -27,7 +27,7 @@ function Assessments() {
 const handleSubmit = (e) => {
   e.preventDefault();
   // handle submission logic here
-   fetch(`http://localhost:4500/assessments`,{
+   fetch(`http://localhost:3000/assessments`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -45,11 +45,11 @@ const handleSubmit = (e) => {
     useEffect(() => {
   
   // fetch katas
-  fetch('http://localhost:4500/katas')
+  fetch('http://localhost:3000/katas')
     .then(res => res.json())
     .then(data => setKatas(data));
      
-  fetch(`http://localhost:4500/assessments`, {
+  fetch(`http://localhost:3000/assessments`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json"
