@@ -95,7 +95,8 @@ function HomePage(){
                 <img src="https://marketinghr.wpengine.com/wp-content/uploads/2022/10/tool6.png" alt="Tool 6" />
                 <img src="https://marketinghr.wpengine.com/wp-content/uploads/2022/10/tool7.png" alt="Tool 7" />
         </div>
-        <div className="mt-10 mb-10 p-4 lg:p-6 max-w-screen-lg mx-auto"><img src="https://www.hackerrank.com/wp-content/uploads/2022/11/interview1.png" alt=""/>
+        <div className="mt-10 mb-10 p-4 lg:p-6 max-w-screen-lg mx-auto">
+            <img src="https://www.hackerrank.com/wp-content/uploads/2022/11/interview1.png" alt=""/>
         </div>
  
         <div class="flex justify-center p-4 sm:p-0">

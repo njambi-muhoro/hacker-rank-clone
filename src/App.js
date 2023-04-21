@@ -14,6 +14,12 @@ import Details from "./Components/Details";
 import Questions from "./Components/Details/Questions";
 import Candidates from "./Components/Details/Candidates";
 import Invite from "./Components/Details/Invite";
+import Resources from "./Components/Resources";
+import Products from "./Components/Products";
+import Solutions from "./Components/Solutions";
+
+
+
 
 import { useState } from "react";
 import ViewKata from "./Components/ViewKata";
@@ -27,12 +33,16 @@ function App() {
      setSearch(value)
 	}
 	return (
+		
 		<>
+		
+		
 			<AuthProvider>
 
 				<NavBar  search = {search} handleSearch={handleSearch}/>
 				<div className="min-h-[70vh]">
 					<Routes>
+					
 					<Route path="/viewkata/:kata_id" element={<ViewKata />} />
 					<Route path='/' element={<HomePage />} />
 					<Route path='/login' element={<Login />} />
@@ -47,11 +57,16 @@ function App() {
 						<Route path='candidates' element={<Candidates />} />
 						<Route path='invite' element={<Invite />} />
 					</Route>
+					<Route path='Resources' element={<Resources />} />
+					<Route path='Products' element={<Products />} />
+					<Route path='Solutions' element={<Solutions />} />
 					{/* <Route path='Questions' element={<QuestionPage />} /> */}
 				</Routes>
 				</div>
 
 				<Footer />
+			
+				
 			</AuthProvider>
 		</>
 	);

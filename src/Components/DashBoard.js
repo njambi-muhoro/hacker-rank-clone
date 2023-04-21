@@ -307,7 +307,36 @@ const DashBoard = () => {
 										developers you're looking to hire.
 									</p>
 								</div>
-							</header>
+							  </header>
+							  <div class="grid grid-cols-3 gap-6 sm:block">
+  {/* <!-- Card 1 --> */}
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <img src="https://via.placeholder.com/600x400" alt="Placeholder image" class="w-full"/>
+    <div class="p-4">
+      <h2 class="font-bold text-xl mb-2">Card 1 Title</h2>
+      <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae feugiat enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin faucibus dignissim quam, vel malesuada ex aliquam ac. </p>
+    </div>
+  </div>
+
+  {/* <!-- Card 2 --> */}
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+    <img src="https://via.placeholder.com/600x400" alt="Placeholder image" class="w-full"/>
+    <div class="p-4">
+      <h2 class="font-bold text-xl mb-2">Card 2 Title</h2>
+      <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae feugiat enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin faucibus dignissim quam, vel malesuada ex aliquam ac. </p>
+    </div>
+  </div>
+
+  {/* <!-- Card 3 --> */}
+  <div class="bg-white rounded-lg shadow-lg overflow-hidden w-100">
+    <img src="https://via.placeholder.com/300x400" alt="Placeholder image" />
+    <div class="p-4">
+      <h2 class="font-bold text-xl mb-2">Card 3 Title</h2>
+      <p class="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae feugiat enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin faucibus dignissim quam, vel malesuada ex aliquam ac. </p>
+    </div>
+  </div>
+</div>
+
 						</div>
 					) : null}
 				</>
