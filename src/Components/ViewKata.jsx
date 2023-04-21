@@ -21,7 +21,7 @@ function ViewKata() {
   }, []);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/katas/${kata_id}`)
+        fetch(`http://localhost:4500/katas/${kata_id}`)
         .then(response => response.json())
         .then(res => {
             setkata(res)

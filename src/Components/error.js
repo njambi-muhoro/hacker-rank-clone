@@ -10,7 +10,7 @@ const Question = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/katas")
+    fetch("http://localhost:4500/katas")
       .then((response) => response.json())
       .then((data) => setQuestions(data))
       .catch((error) => console.log(error));
@@ -44,7 +44,7 @@ const Question = () => {
       rank: rank,
     };
   
-    fetch("http://localhost:3000/katas", {
+    fetch("http://localhost:4500/katas", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

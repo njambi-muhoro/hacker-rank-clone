@@ -13,7 +13,7 @@ export default function AuthProvider({children})
 
     // login
     const login = (email, password) =>{
-        fetch(`http://localhost:3000/login`,{
+        fetch(`http://localhost:4500/login`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -80,7 +80,7 @@ export default function AuthProvider({children})
     const register = (username,email,userType, password) => {
          console.log("userType:", userType); // add this line to debug
 
-        fetch(`http://localhost:3000/users`,{
+        fetch(`http://localhost:4500/users`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
