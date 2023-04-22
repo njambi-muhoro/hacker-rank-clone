@@ -20,6 +20,8 @@ import Solutions from "./Components/Solutions";
 
 
 
+
+
 import { useState } from "react";
 import ViewKata from "./Components/ViewKata";
 import Email from "./Components/Email";
@@ -52,19 +54,25 @@ function App() {
 					<Route path='/details/:id' element={<Details />}>
 						<Route path='questions' element={<Questions  />} />
 						<Route path='candidates' element={<Candidates />} />
+						
 						<Route path='invite' element={<Invite />} />
+							
+					
 					</Route>
+					
 					<Route path='Resources' element={<Resources />} />
 					<Route path='Products' element={<Products />} />
 					<Route path='Solutions' element={<Solutions />} />
 					{/* <Route path='Questions' element={<QuestionPage />} /> */}
 				</Routes>
 				</div>
+			
 
 				<Footer />
 			
 				
 			</AuthProvider>
+			
 		</>
 	);
 }
