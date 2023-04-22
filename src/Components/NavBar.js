@@ -59,7 +59,7 @@ function NavBar({search,handleSearch}){
 							{/* HamburgerMenu */}
 							<div className='md:hidden'>
 								<button
-									className='p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border'
+									className='p-2 text-white rounded-md outline-none focus:border-gray-400 focus:border'
 									onClick={() => setNavbar(!navbar)}
 								>
 									{navbar ? <AiOutlineClose /> : <GiHamburgerMenu />}

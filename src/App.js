@@ -1,5 +1,5 @@
 import SignUp from "./Components/SignUp";
-// import QuestionPage from "./Components/QuestionPage";
+import QuestionPage from "./Components/QuestionPage";
 import { Routes, Route } from "react-router";
 import NavBar from "./Components/NavBar";
 import Login from "./Components/Login";
@@ -44,7 +44,7 @@ function App() {
 						<Route path='candidates' element={<Candidates />} />
 						<Route path='invite' element={<Invite />} />
 					</Route>
-					{/* <Route path='Questions' element={<QuestionPage />} /> */}
+					<Route path='Questions' element={<QuestionPage />} />
 				</Routes>
 				</div>
 

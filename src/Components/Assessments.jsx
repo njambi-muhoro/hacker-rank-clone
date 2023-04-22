@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GoPlus } from 'react-icons/go';
-import {ImCross} from 'react-icons/im'
+import { ImCross } from 'react-icons/im';
+import { AiFillDelete } from 'react-icons/ai';
+import { HiViewGridAdd } from 'react-icons/hi';
 import Modal from 'react-modal';
 
 function Assessments() {
@@ -39,6 +41,7 @@ const handleSubmit = (e) => {
         )
      .then(res => res.json())
      .then(response => {
+       setModalIsOpen(false);
     console.log(response)
   })
 }
@@ -80,6 +83,7 @@ function handleKataSelect( id) {
     body:JSON.stringify({assessment_id, kata_id})
   }).then(res => res.json())
     .then(response => {
+      setShowKataList(false);
     console.log(response)
   })
 }
@@ -158,8 +162,12 @@ function handleKataSelect( id) {
                   <li key={kata.id}>{kata.name}</li>
                 ))}
               </ul>
-              <Link style={{marginRight:"15px"}} to={`/details/${assessment.id}`}>view</Link>
-              <button onClick={() => deleteAssessment(assessment.id)}>Delete</button>
+              <Link style={{ color: "green", padding: "10px" }}
+												class='flex gap-1 items-center'
+												type='button' to={`/details/${assessment.id}`}><HiViewGridAdd/>view</Link>
+              <button style={{ color: "green", padding: "10px" }}
+												class='flex gap-1 items-center'
+												type='button' onClick={() => deleteAssessment(assessment.id)}><AiFillDelete/>Delete</button>
             </div>
             <button
               className="absolute top-0 right-0 m-4 py-2 px-4 text-black font-bold rounded"
