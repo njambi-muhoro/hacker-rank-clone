@@ -1,4 +1,5 @@
 import SignUp from "./Components/SignUp";
+import React from "react"
 // import QuestionPage from "./Components/QuestionPage";
 import { Routes, Route } from "react-router";
 import NavBar from "./Components/NavBar";
@@ -25,6 +26,7 @@ import Solutions from "./Components/Solutions";
 import { useState } from "react";
 import ViewKata from "./Components/ViewKata";
 import Email from "./Components/Email";
+import Profile from "./Components/Profile";
 
 
 function App() {
@@ -51,6 +53,7 @@ function App() {
 					<Route path='/library' element={<Library />} />
 					<Route path='/assessments' element={<Assessments />} />
 					<Route path='/email' element={<Email />} />
+					<Route path='/profile' element={<Profile />} />
 					<Route path='/details/:id' element={<Details />}>
 						<Route path='questions' element={<Questions  />} />
 						<Route path='candidates' element={<Candidates />} />

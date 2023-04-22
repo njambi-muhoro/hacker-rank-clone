@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import React from "react"
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
 export const AuthContext = createContext();
@@ -77,7 +78,7 @@ export default function AuthProvider({children})
     }
 
 // Register
-    const register = (username,email,userType, password) => {
+    const register = (email, password, username, userType) => {
          console.log("userType:", userType); // add this line to debug
 
         fetch(`http://localhost:3000/users`,{
@@ -86,7 +87,7 @@ export default function AuthProvider({children})
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-               username,email,userType, password
+               email, password, username, userType
             })
         }
         )

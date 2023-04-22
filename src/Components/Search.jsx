@@ -1,4 +1,5 @@
 import { FiSearch } from 'react-icons/fi'
+import React from "react"
 
 function Search({search,handleSearch}) {
     

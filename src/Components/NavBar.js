@@ -5,6 +5,7 @@ import { useState } from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
 import { AuthContext } from './context/AuthContext';
+import { useNavigate } from 'react-router-dom'
 import Search from './Search';
 
 
@@ -33,7 +34,8 @@ function NavBar({search,handleSearch}){
 		};
 	}, [dropdownRef]);
 
-	
+	const navigate = useNavigate()
+
 	return (
 		<>
 			<nav
@@ -197,9 +199,9 @@ function NavBar({search,handleSearch}){
 											{isOpen && (
 												<div className='absolute z-50 mt-2 right-0 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 dark:border dark:border-gray-700'>
 													<a
-														href='!#'
+														// href='!#'
 														onClick={() => {
-															toggleMenu();
+															navigate("/profile");
 														}}
 														className='block px-4 py-2 text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300'
 													>

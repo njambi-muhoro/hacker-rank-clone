@@ -62,11 +62,28 @@ function Questions() {
               <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onClick={() => deleteKata(kata.id)}>Delete</button>
             </td>
           </tr>
-        ))}
+
+        </thead>
+        <tbody>
+       {assessment.katas.map(kata => (
+  <tr key={kata.id}>
+    <td>{kata.name}</td>
+    <td>{kata.score}</td>
+    <td>{kata.type}</td>
+    <td>{kata.time}</td>
+    <td>{kata.skills ? kata.skills.join(', ') : ''}</td> // Check if kata.skills is defined
+    <td>
+      <button>Edit</button>
+      <button onClick={() => deleteKata(kata.id)}>Delete</button>
+    </td>
+  </tr>
+))}
+
       </tbody>
     </table>
   </div>
 </div>
+
 
       </div>
     </div>
