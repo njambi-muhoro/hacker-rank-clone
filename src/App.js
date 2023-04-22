@@ -57,11 +57,8 @@ function App() {
 					<Route path='/details/:id' element={<Details />}>
 						<Route path='questions' element={<Questions  />} />
 						<Route path='candidates' element={<Candidates />} />
-						
 						<Route path='invite' element={<Invite />} />
-							
-					
-					</Route>
+						</Route>
 					
 					<Route path='Resources' element={<Resources />} />
 					<Route path='Products' element={<Products />} />

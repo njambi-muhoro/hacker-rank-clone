@@ -103,7 +103,18 @@ function handleKataSelect( id) {
   .catch(error => {
     // Handle the error
   });
-}
+  }
+  
+  fetch(`http://localhost:3000/invitations`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+    .then(res => res.json())
+    .then(response => {
+    console.log(response)
+  })
 
    
   return (
