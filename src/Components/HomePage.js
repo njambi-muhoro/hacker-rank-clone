@@ -21,8 +21,10 @@ function HomePage(){
             </div>
             
             <div className="flex justify-center gap-4 mt-10">
+
                 <button  onClick={() => navigate("/signup")} type="button" className="px-9 py-2.5 mr-2 mb-2 text-sm font-medium bg-[#077407] text-white rounded-md" >Sign Up</button>
                 <button  onClick={() => navigate("/demo")} type="button" class="px-5 py-2.5 mr-2 mb-2 text-xs font-medium bg-[#D9D9D9] text-black border border-black rounded-md">
+
                  Request Demo
                 </button>
             
