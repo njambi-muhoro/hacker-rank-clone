@@ -36,13 +36,14 @@ return (
   <div>
     <div className="lg:max-w-6xl mx-auto px-10 sm:px-6 lg:px-8 h-[100vh]">
       <h1 className="text-3xl font-bold mt-4 mb-4">{assessment ? assessment.title : 'Loading...'}</h1>
+      {/* <h2>{assessment.duration}</h2> */}
       <div className=" p-4 rounded-md">
         <div class="bg-white rounded-lg shadow-lg overflow-hidden">
           <div class="px-6 py-4">
             <table class="min-w-full text-sm">
               <thead class="border-b">
                 <tr>
-                  <th class="py-2 px-4 text-left uppercase">Questions</th>
+                  <th class="py-2 px-4 text-left uppercase">Questions({assessment ? assessment.katas.length : 0})</th>
                   <th class="py-2 px-4 text-left uppercase">Score</th>
                   <th class="py-2 px-4 text-left uppercase">Type</th>
                   <th class="py-2 px-4 text-left uppercase">Time</th>

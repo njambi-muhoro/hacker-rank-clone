@@ -1,6 +1,6 @@
 import SignUp from "./Components/SignUp";
 import React from "react"
-// import QuestionPage from "./Components/QuestionPage";
+import QuestionPage from "./Components/QuestionPage";
 import { Routes, Route } from "react-router";
 import NavBar from "./Components/NavBar";
 import Login from "./Components/Login";
@@ -45,7 +45,7 @@ function App() {
 				<div className="min-h-[70vh]">
 					<Routes>
 					
-					<Route path="/viewkata/:kata_id" element={<ViewKata />} />
+					<Route path="/viewkata/:id" element={<ViewKata />} />
 					<Route path='/' element={<HomePage />} />
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<SignUp />} />
@@ -63,7 +63,7 @@ function App() {
 					<Route path='Resources' element={<Resources />} />
 					<Route path='Products' element={<Products />} />
 					<Route path='Solutions' element={<Solutions />} />
-					{/* <Route path='Questions' element={<QuestionPage />} /> */}
+					<Route path='Questions' element={<QuestionPage />} />
 				</Routes>
 				</div>
 			

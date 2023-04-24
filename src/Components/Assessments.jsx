@@ -17,6 +17,7 @@ function Assessments() {
   const [showKataList, setShowKataList] = useState(false);
   const [selectedAssessment, setSelectedAssessment] = useState("")
   const [katas, setKatas] = useState("")
+  const [invitations, setInvitations] = useState('')
   const assessment_id = selectedAssessment
   const openModal = () => {
     setModalIsOpen(true);
@@ -32,7 +33,8 @@ const handleSubmit = (e) => {
    fetch(`http://localhost:3000/assessments`,{
             method: "POST",
             headers:{
-                "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
             },
             body: JSON.stringify({
                 title, duration, userId
@@ -55,7 +57,8 @@ const handleSubmit = (e) => {
   fetch(`http://localhost:3000/assessments`, {
     method: "GET",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
     }
   })
     .then(res => res.json())
@@ -78,7 +81,8 @@ function handleKataSelect( id) {
   fetch(`/assessment_katas`, {
     method:'POST',
     headers:{
-    "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
   },
     body:JSON.stringify({assessment_id, kata_id})
   }).then(res => res.json())
@@ -90,7 +94,11 @@ function handleKataSelect( id) {
 
   function deleteAssessment(id) {
   fetch(`/assessments/${id}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+    }
   })
   .then(response => {
     if (response.ok) {
@@ -105,17 +113,22 @@ function handleKataSelect( id) {
   });
   }
   
-  fetch(`http://localhost:3000/invitations`, {
+  useEffect(() => {
+    fetch(`http://localhost:3000/invitations`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+     'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+
     }
   })
     .then(res => res.json())
     .then(response => {
-    console.log(response)
+      setInvitations(response)
   })
 
+  },[])
+  
    
   return (
     <div className="min-h-[100vh] ">
@@ -124,8 +137,20 @@ function handleKataSelect( id) {
           {userType === "student" ? (
             <>
               <section className="w-full mt-[10vh]">
-                <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8">
+                <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:px-8">
                   <h1>Welcome back. Please attempt the assessments</h1>
+                  <div>
+                    {
+                      invitations && invitations.map((invitation) => (
+                        <div key={invitation.id}>
+                          <Link to={`/viewkata/${invitation.assessment.id}`}>
+                           <p>{invitation.assessment.title}</p>
+                          <p>{ invitation.assessment.duration}</p>
+                          </Link>
+                        </div>
+                      ))
+                    }
+                  </div>
                 </div>
                 </section>
             </>
@@ -162,31 +187,36 @@ function handleKataSelect( id) {
   <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:px-8">
     <h1>My Assessments</h1>
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-4">
         {Array.isArray(assessments) && assessments.map((assessment) => (
-          <div key={assessment.id} className="max-w-sm rounded overflow-hidden shadow-lg relative">
-            <div className="px-6 py-4">
-              <div className="font-bold text-xl mb-2">{assessment.title}</div>
-              <p className="text-gray-700 text-base">Duration: {assessment.duration}</p>
-              <ul className="list-disc mt-4">
-                {assessment.assessment_kata && assessment.assessment_kata.map((kata) => (
-                  <li key={kata.id}>{kata.name}</li>
-                ))}
-              </ul>
-              <Link style={{ color: "green", padding: "10px" }}
-												class='flex gap-1 items-center'
-												type='button' to={`/details/${assessment.id}`}><HiViewGridAdd/>view</Link>
-              <button style={{ color: "green", padding: "10px" }}
-												class='flex gap-1 items-center'
-												type='button' onClick={() => deleteAssessment(assessment.id)}><AiFillDelete/>Delete</button>
-            </div>
-            <button
-              className="absolute top-0 right-0 m-4 py-2 px-4 text-black font-bold rounded"
-              onClick={() => handleAddClick(assessment.id)}
-            >
-              <GoPlus /> Add
-            </button>
-          </div>
+       <div key={assessment.id} className="max-w-sm rounded overflow-hidden shadow-lg relative">
+  <div className="px-6 py-4">
+    <div className="font-bold text-xl mb-2">
+      {assessment.title} ({assessment.assessment_katas ? assessment.assessment_katas.length : 0})
+    </div>
+    <p className="text-gray-700 text-base">Duration: {assessment.duration}</p>
+    <ul className="list-disc mt-4">
+      {assessment.assessment_kata && assessment.assessment_kata.map((kata) => (
+        <li key={kata.id}>{kata.name}</li>
+      ))}
+    </ul>
+    <div className='flex'>
+      <Link style={{ color: "green", padding: "10px" }}
+        class='flex gap-1 items-center'
+        type='button' to={`/details/${assessment.id}`}><HiViewGridAdd/>view</Link>
+      <button style={{ color: "green", padding: "10px" }}
+        class='flex gap-1 items-center'
+        type='button' onClick={() => deleteAssessment(assessment.id)}><AiFillDelete/>Delete</button>
+    </div>
+  </div>
+  <button
+    className="absolute top-0 right-0 m-4 py-2 px-4 text-black font-bold rounded"
+    onClick={() => handleAddClick(assessment.id)}
+  >
+    <GoPlus /> Add
+  </button>
+</div>
+
         ))}
       </div>
       {showKataList && (
