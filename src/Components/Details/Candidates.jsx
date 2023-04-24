@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import Table from './Table';
 function Candidates() {
   const { id } = useParams();
-  const token = sessionStorage.getItem('token');
+  const token = sessionStorage.getItem('jwtToken');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [assessment, setAssessment] = useState('');
   const [email, setEmail] = useState('');

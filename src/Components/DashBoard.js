@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
 import { BsPlusCircle } from 'react-icons/bs';
 
@@ -9,20 +9,20 @@ const DashBoard = () => {
     const isLoggedIn = sessionStorage.getItem("jwtToken") ? true : false;
 	const userType = sessionStorage.getItem("userTYpe");
 
-	// const [navbarHeight, setNavbarHeight] = useState(0)
+	const [navbarHeight, setNavbarHeight] = useState(0)
 
-	// window.addEventListener("resize", () => {
-	// 	syncHeight()
-	// })
+	window.addEventListener("resize", () => {
+		syncHeight()
+	})
 
-	// function syncHeight() {
-	// 	const navbar = document.getElementById("nav")
-	// 	setNavbarHeight(navbar.offsetHeight)
-	// }
+	function syncHeight() {
+		const navbar = document.getElementById("nav")
+		setNavbarHeight(navbar.offsetHeight)
+	}
 
-	// useEffect(() => {
-	// 	syncHeight()
-	// }, [])
+	useEffect(() => {
+		syncHeight()
+	}, [])
 
   return (
 		<div className='mt-12 min-h-[100vh] justify-center items-center'>
@@ -70,7 +70,7 @@ const DashBoard = () => {
 							<section className='bg-white rounded-lg mb-10 '>
 								<div className='flex justify-between items-center mb-4 mx-auto lg:max-w-6xl px-8'>
 									<h2 className='text-2xl font-bold'>We recommend</h2>
-									<a href='!#' className='text-[#077407] hover:underline'>
+									<a href='/library' className='text-[#077407] hover:underline'>
 										View all
 									</a>
 								</div>
@@ -124,7 +124,7 @@ const DashBoard = () => {
 									</div>
 									<div className='flex w-1/3 justify-center border-black'>
 										<a
-											href='!#'
+											href='/library'
 											className='px-4 py-2 block bg-[#077407] text-white rounded-lg font-medium hover:bg-[#077407] hover:text-white '
 										>
 											Start Preparation
@@ -315,29 +315,46 @@ const DashBoard = () => {
 
 							<div className='flex lg:max-w-6xl mx-auto px-6 mt-[10vh]'>
 								<div className='mx-2'>
-									<div class='block rounded-lg bg-white text-center shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700'>
-										<div class='border-b-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50'>
-											Featured
-										</div>
-										<div class='p-6'>
-											<h5 class='mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50'>
-												Special title treatment
-											</h5>
-											<p class='mb-4 text-base text-neutral-600 dark:text-neutral-200'>
-												With supporting text below as a natural lead-in to
-												additional content.
-											</p>
+									<div
+										class='block rounded-lg bg-white shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700'
+										style={{ height: "400px", minWidth:"450px" }}
+									>
+										<div class='border-b-2 flex text-center justify-between align-items-center border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50'>
+											<p>Assessments(0)</p>
 											<button
+												style={{ color: "green", padding: "10px" }}
+												class='flex gap-1 items-center'
 												type='button'
-												class='inline-block rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]'
-												data-te-ripple-init
-												data-te-ripple-color='light'
 											>
-												Button
+												<BsPlusCircle />
+												Create Assessment
 											</button>
 										</div>
-										<div class='border-t-2 border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50'>
-											2 days ago
+										<div class='p-6 text-center mt-10 pt-10'>
+											<h5 class='mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50'>
+												Let's get started!
+											</h5>
+											<p class='mb-4 text-base text-neutral-600 dark:text-neutral-200'>
+												Click below to make your
+												Assessments.
+											</p>
+											<div class='flex justify-center align-items-center'>
+												<button
+													style={{
+														paddingLeft: "30px",
+														width: "200px",
+														textAlign: "center",
+														fontWeight: "bold",
+														paddingTop: "7px",
+														paddingBottom: "7px",
+													}}
+													class='flex gap-1 items-center bg-green-500 text-white'
+													type='button'
+												>
+													<BsPlusCircle />
+													Create Assessment
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
