@@ -64,6 +64,7 @@ const Question = () => {
   
 
   return ( 
+    <>
     <div className="flex">
       <div className="w-1/2 p-4">
         {questions.map((question, index) => (
@@ -166,7 +167,141 @@ const Question = () => {
       </div>
     </form>
   </div>
+    </div>
+    <div>
+        <form class="max-w-md mx-auto mt-6 p-6 bg-white rounded-lg shadow-md">
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="name">
+      Name
+    </label>
+    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Enter name"/>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="slug">
+      Slug
+    </label>
+    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="slug" type="text" placeholder="Enter slug"/>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="category">
+      Category
+    </label>
+    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="category" type="text" placeholder="Enter category"/>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="languages">
+      Languages
+    </label>
+    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="languages" type="text" placeholder="Enter languages"/>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="url">
+      URL
+    </label>
+    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="url" type="text" placeholder="Enter URL"/>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="rank">
+      Rank
+    </label>
+    <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="rank" type="text" placeholder="Enter rank"/>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="description">
+      Description
+    </label>
+    <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" rows="4" placeholder="Enter description"></textarea>
+  </div>
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2" for="starter_code">
+      Starter Code
+    </label>
+    <textarea class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="starter_code" rows="6" placeholder="Enter starter code"></textarea>
+          </div>
+          <div class="my-4">
+  <label class="block font-bold mb-2" for="test1-input">Test 1 Input:</label>
+  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="test1-input" type="text" value='["Telescopes", "Glasses", "Eyes", "Monocles"]' readonly/>
 </div>
+<div class="my-4">
+  <label class="block font-bold mb-2" for="test1-output">Test 1 Output:</label>
+  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="test1-output" type="text" value='["Eyes", "Glasses", "Monocles", "Telescopes"]' readonly/>
+</div>
+
+<div class="my-4">
+  <label class="block font-bold mb-2" for="test2-input">Test 2 Input:</label>
+  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="test2-input" type="text" value='["a", "aa", "aaa"]' readonly/>
+</div>
+<div class="my-4">
+  <label class="block font-bold mb-2" for="test2-output">Test 2 Output:</label>
+  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="test2-output" type="text" value='["a", "aa", "aaa"]' readonly/>
+          </div>
+          
+{/* 
+  console.log(kata.tests)
+function sortByLength(arr) {
+  return arr.sort((a, b) => a.length - b.length);
+}
+
+function validBraces(braces) {
+  const stack = [];
+  const openBraces = ['(', '{', '['];
+  const closeBraces = [')', '}', ']'];
+  for (let i = 0; i < braces.length; i++) {
+    if (openBraces.includes(braces[i])) {
+      stack.push(braces[i]);
+    } else if (closeBraces.includes(braces[i])) {
+      const index = closeBraces.indexOf(braces[i]);
+      if (stack.length === 0 || stack[stack.length - 1] !== openBraces[index]) {
+        return false;
+      } else {
+        stack.pop();
+      }
+    }
+  }
+  return stack.length === 0;
+}
+
+function runTests(kata, code) {
+  try {
+    const tests = kata?.tests;
+    let codeWithSortByLength = '';
+    if (kata?.slug === 'sort-array-by-string-length') {
+      codeWithSortByLength = kata.starter_code + '\n' + code;
+    } else if (kata.slug === 'valid-braces') {
+      codeWithSortByLength = kata.starter_code.replace('function validBraces', 'function sortByLength') + '\n' + code;
+    }
+    const sortByLengthMatch = codeWithSortByLength.match(/function\s+sortByLength\s*\(\s*arr\s*\)\s*{\s*([\s\S]*)\s*}/);
+    if (sortByLengthMatch) {
+      const sortByLengthFn = sortByLengthMatch[0];
+      eval(sortByLengthFn);
+    }
+    for (let i = 0; tests && i < tests.length; i++) {
+      const test = tests[i];
+      let expectedOutput = '';
+      let actualOutput = '';
+      if (kata?.slug === 'sort-array-by-string-length') {
+        expectedOutput = JSON.stringify(test.output);
+        actualOutput = JSON.stringify(sortByLength(test.input));
+      } else if (kata?.slug === 'valid-braces') {
+        expectedOutput = JSON.stringify(test.output);
+        actualOutput = JSON.stringify(validBraces(test.input));
+      }
+      if (expectedOutput === actualOutput) {
+        console.log(`Test ${i + 1} passed`);
+      } else {
+        console.log(`Test ${i + 1} failed`);
+        console.log(`Expected output: ${expectedOutput}`);
+        console.log(`Actual output: ${actualOutput}`);
+      }
+    }
+  } catch (error) {
+    console.error(error.toString());
+  }
+} */}
+
+          </form>
+    </div>
+    </>
 );
 };
 
