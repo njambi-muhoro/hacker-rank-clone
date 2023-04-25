@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 function Questions() {
   const [assessment, setAssessment] = useState(null);
-
+  const token = sessionStorage.getItem('jwtToken');
   const { id } = useParams();
 
   useEffect(() => {
@@ -18,7 +18,11 @@ function Questions() {
 
   function deleteKata(id) {
     fetch(`http://localhost:3000/assessment_katas/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+           headers: {
+       "Content-Type": "application/json",
+       'Authorization': `Bearer ${token}`
+     }
     })
       .then(response => {
         if (response.ok) {

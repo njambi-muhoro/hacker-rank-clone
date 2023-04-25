@@ -41,7 +41,7 @@ function Table() {
                       End Date
                     </th>
                     <th scope="col" className="px-6 text-xl py-4 font-bold">
-                      Note
+                      Action
                     </th>
                   </tr>
                 </thead>
@@ -66,7 +66,7 @@ function Table() {
           {invitation.end_date}
         </td>
         <td className="whitespace-nowrap px-6 py-4">
-          {invitation.note}
+         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">View</button>
         </td>
       </tr>
     ))}

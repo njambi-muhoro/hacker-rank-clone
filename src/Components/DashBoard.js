@@ -25,7 +25,7 @@ const DashBoard = () => {
 	}, [])
 
   return (
-		<div className='mt-12 min-h-[100vh] justify-center items-center'>
+		<div className='mt-[10vh] min-h-[100vh] justify-center items-center'>
 			{isLoggedIn ? (
 				<>
 					{userType === "student" ? (
