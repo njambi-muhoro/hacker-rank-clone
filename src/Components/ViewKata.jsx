@@ -33,104 +33,108 @@ function ViewKata() {
     })
 
     }, [id])
-
-    function handleClick(id) {
-        fetch(`http://localhost:3000/katas/${id}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
-            }
-        })
-        .then(response => response.json())
-        .then(response => {
-            setKata(response)
-         setCode(response.starter_code);
-
-
-            console.log(response)
-        })
+function handleClick(id) {
+  fetch(`http://localhost:3000/katas/${id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
     }
-  console.log(kata.tests)
-function sortByLength(arr) {
-  return arr.sort((a, b) => a.length - b.length);
+  })
+    .then(response => response.json())
+    .then(response => {
+      setKata(response)
+      setCode(response.starter_code);
+      const kataObject = {
+        tests: response.tests,
+        starter_code: response.starter_code
+      };
+      console.log(response)
+      
+    })
 }
-
-function validBraces(braces) {
-  const stack = [];
-  const openBraces = ['(', '{', '['];
-  const closeBraces = [')', '}', ']'];
-  for (let i = 0; i < braces.length; i++) {
-    if (openBraces.includes(braces[i])) {
-      stack.push(braces[i]);
-    } else if (closeBraces.includes(braces[i])) {
-      const index = closeBraces.indexOf(braces[i]);
-      if (stack.length === 0 || stack[stack.length - 1] !== openBraces[index]) {
-        return false;
-      } else {
-        stack.pop();
-      }
-    }
-  }
-  return stack.length === 0;
-}
-
-function runTests(kata, code) {
+function runTests() {
   try {
-    const tests = kata?.tests;
-    let codeWithSortByLength = '';
-    if (kata?.slug === 'sort-array-by-string-length') {
-      codeWithSortByLength = kata.starter_code + '\n' + code;
-    } else if (kata.slug === 'valid-braces') {
-      codeWithSortByLength = kata.starter_code.replace('function validBraces', 'function sortByLength') + '\n' + code;
-    }
-    const sortByLengthMatch = codeWithSortByLength.match(/function\s+sortByLength\s*\(\s*arr\s*\)\s*{\s*([\s\S]*)\s*}/);
-    if (sortByLengthMatch) {
-      const sortByLengthFn = sortByLengthMatch[0];
-      eval(sortByLengthFn);
-    }
-    for (let i = 0; tests && i < tests.length; i++) {
-      const test = tests[i];
-      let expectedOutput = '';
-      let actualOutput = '';
-      if (kata?.slug === 'sort-array-by-string-length') {
-        expectedOutput = JSON.stringify(test.output);
-        actualOutput = JSON.stringify(sortByLength(test.input));
-      } else if (kata?.slug === 'valid-braces') {
-        expectedOutput = JSON.stringify(test.output);
-        actualOutput = JSON.stringify(validBraces(test.input));
+    const tests = kata.tests;
+    let allTestsPassed = true;
+    for (let i = 0; i < tests.length; i++) {
+      const input = tests[i].input;
+      const expectedOutput = tests[i].output;
+      const userOutput = eval(`${code}(${JSON.stringify(input)})`);
+      console.log(`Test ${i + 1} input: ${JSON.stringify(input)}`);
+      console.log(`Test ${i + 1} expected output: ${JSON.stringify(expectedOutput)}`);
+      console.log(`Test ${i + 1} user output: ${JSON.stringify(userOutput)}`);
+      if (JSON.stringify(expectedOutput) !== JSON.stringify(userOutput)) {
+        console.log(`Test ${i + 1} failed. Expected output: ${JSON.stringify(expectedOutput)}. Got output: ${JSON.stringify(userOutput)}`);
+        allTestsPassed = false;
       }
-      if (expectedOutput === actualOutput) {
-        console.log(`Test ${i + 1} passed`);
-      } else {
-        console.log(`Test ${i + 1} failed`);
-        console.log(`Expected output: ${expectedOutput}`);
-        console.log(`Actual output: ${actualOutput}`);
-      }
+    }
+    if (allTestsPassed) {
+      console.log('All tests passed!');
     }
   } catch (error) {
-    console.error(error.toString());
+    console.error(error);
   }
 }
+  
+// function runTests() {
+//   const tests = kata.tests;
+//   let allTestsPassed = true;
+
+//   for (let i = 0; i < tests.length; i++) {
+//     const input = tests[i].input;
+//     const expectedOutput = tests[i].output;
+//     let userOutput;
+
+//     try {
+//       userOutput = eval(`${code}(${JSON.stringify(...input)})`);
+//     } catch (error) {
+//       console.error(`Test ${i + 1} failed. Expected output: ${JSON.stringify(expectedOutput)}. Got error: ${error}`);
+//       allTestsPassed = false;
+//       continue;
+//     }
+
+//     if (JSON.stringify(expectedOutput) !== JSON.stringify(userOutput)) {
+//       console.error(`Test ${i + 1} failed. Expected output: ${JSON.stringify(expectedOutput)}. Got output: ${JSON.stringify(userOutput)}`);
+//       allTestsPassed = false;
+//     }
+//   }
+
+//   if (allTestsPassed) {
+//     console.log('All tests passed!');
+//   }
+// }
+
+
+// function runTests() {
+//   const testResults = kata.tests.map((test) => {
+//     try {
+//       const result = eval(`${code};\n${test.input}`);
+//       const passed = result === test.output;
+//       return {
+//         input: test.input,
+//         expectedOutput: test.output,
+//         actualOutput: result,
+//         passed: passed,
+//       };
+//     } catch (error) {
+//       return {
+//         input: test.input,
+//         expectedOutput: test.output,
+//         actualOutput: error.toString(),
+//         passed: false,
+//       };
+//     }
+//   });
+//   setOutput(JSON.stringify(testResults, null, 2));
+// }
 
 
 
-
-
-
-
-
-
-    function submitCode() {
-        // console.log(code)
-        // try {
-        //     const result = eval(code);
-        //     setOutput(result.toString());
-           
-        // } catch (error) {
-        //     setOutput(error.toString());
-        // }
-    }
+  
+  function submitCode() {
+  
+}
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -167,7 +171,7 @@ function runTests(kata, code) {
       extensions={[javascript({ jsx: true })]}
       onChange={onChange}
     />
-<button className='bg-green-500 text-white p-2 m-2' onClick={() => runTests(kata, code)}>Run tests</button>
+<button className='bg-green-500 text-white p-2 m-2' onClick={runTests}>Run tests</button>
     <button className='bg-green-500 max-w-sm m-2 p-2 text-white ' onClick={submitCode}>Submit</button>
     <div className='text-white'>{output}</div>
   </div>
