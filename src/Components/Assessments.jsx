@@ -18,6 +18,7 @@ function Assessments() {
   const [selectedAssessment, setSelectedAssessment] = useState("")
   const [katas, setKatas] = useState("")
   const [invitations, setInvitations] = useState('')
+  const username = sessionStorage.getItem("username");
   const assessment_id = selectedAssessment
   const openModal = () => {
     setModalIsOpen(true);
@@ -137,15 +138,27 @@ function handleKataSelect( id) {
           {userType === "student" ? (
             <>
               <section className="w-full mt-[10vh]">
+              <header className='theme-m bg-gradient-to-br from-[#11639c] via-[#097bbf] to-[#00ace0] text-white mt-[6vh] justify-center items-center'>
+								<div className='lg:max-w-6xl mx-auto px-10'>
+									<h1 className='text-3xl font-md py-4 '>
+                  Welcome back {username}! Please attempt the assessments
+									</h1>
+									
+									
+								</div>
+							</header>
+
                 <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:px-8">
-                  <h1>Welcome back. Please attempt the assessments</h1>
+
                   <div>
                     {
                       invitations && invitations.map((invitation) => (
                         <div key={invitation.id}>
                           <Link to={`/viewkata/${invitation.assessment.id}`}>
-                           <p>{invitation.assessment.title}</p>
-                          <p>{ invitation.assessment.duration}</p>
+                          <div className='bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
+                            <div className='text-lg font-bold text-gray-900'>{invitation.assessment.title}</div>
+                                <div className='text-xm font-bold text-gray-600'>{ invitation.assessment.duration} minutes</div>
+                          </div>
                           </Link>
                         </div>
                       ))
