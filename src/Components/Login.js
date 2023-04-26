@@ -116,13 +116,9 @@ function Login() {
 											<h4 className='mb-6 text-xl font-semibold'>
 												We are more than just a company
 											</h4>
-											<p className='text-sm '>
-												At Hackerank Coding, our goal is to teach children and
-												parents the value of learning coding at a young age. Not
-												only is programming vital to success in the
-												technology-driven economy of the 21st century, but it
-												can teach kids a broad range of skills that will help
-												them in countless other areas as well.
+											<p className='text-xm '>
+												Hackerank Coding teaches kids and parents the value of
+												learning programming skills early.
 											</p>
 										</div>
 									</div>
