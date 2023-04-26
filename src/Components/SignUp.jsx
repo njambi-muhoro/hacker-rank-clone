@@ -143,26 +143,11 @@ function SignUp() {
                     <h4 className="mb-6 text-xl font-semibold">
                       We are more than just a company
                     </h4>
-                    <p className="text-xs">
-                      Welcome to our HackerRank clone! We're excited to offer a
-                      platform that caters to both students and TMs. If you're a
-                      student looking to improve your coding skills and prepare
-                      for real-world programming challenges, you've come to the
-                      right place. Our platform offers a wide range of coding
-                      exercises and challenges, as well as tutorials to help you
-                      learn at your own pace. If you're a TM looking to provide
-                      your students with the best possible programming
-                      education, our platform can help. Our challenges and
-                      tutorials are designed to cater to different skill levels,
-                      making it easy for you to customize your curriculum to
-                      suit your students' needs. With our platform, you can
-                      easily track your progress, identify areas for
-                      improvement, and measure your success. Our user-friendly
-                      interface makes it easy to navigate and find the
-                      challenges and tutorials that are right for you. So
-                      whether you're a student or a TM, sign up today and take
-                      the first step towards improving your programming skills
-                      and achieving your goals!
+                    <p className="text-xm">
+                      Our HackerRank clone is for students and TMs. We offer coding exercises, challenges,
+                      and tutorials for different skill levels. Our platform tracks progress, is easy to use,
+                      and customizable.
+                      Sign up to improve programming skills and achieve goals.
                     </p>
                   </div>
                 </div>
