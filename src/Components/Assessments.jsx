@@ -89,7 +89,8 @@ function handleKataSelect( id) {
   }).then(res => res.json())
     .then(response => {
       setShowKataList(false);
-    console.log(response)
+      console.log(response)
+      window.location.reload()
   })
 }
 

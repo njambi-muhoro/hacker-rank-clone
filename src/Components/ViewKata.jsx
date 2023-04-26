@@ -48,19 +48,18 @@ function handleClick(id) {
       
     })
 }
+  
+  
 function runTests(kata, code) {
   try {
     const tests = kata.tests;
     let allTestsPassed = true;
     for (let i = 0; i < tests.length; i++) {
       const input = tests[i].input;
-      console.log(input)
       const expectedOutput = tests[i].output;
-      console.log(code)
-      const userOutput = eval(`${code}(${JSON.stringify(input)})`);
-      console.log(userOutput)
-      console.log(expectedOutput)
-      if (expectedOutput.toString() !== userOutput.toString()) {
+      const testFn = new Function('code', 'input', `return ${code}(${JSON.stringify(input)});`);
+      const userOutput = testFn(code, input);
+      if (expectedOutput !== userOutput) {
         console.log(`Test ${i + 1} failed. Expected output: ${expectedOutput}. Got output: ${userOutput}`);
         allTestsPassed = false;
       } else {
@@ -71,10 +70,14 @@ function runTests(kata, code) {
     if (allTestsPassed) {
       console.log('All tests passed!');
     }
+
+    return allTestsPassed;
   } catch (error) {
     console.error(error);
+    return false;
   }
 }
+
 
   
  function submitCode() {
