@@ -36,7 +36,7 @@ function Library({search}) {
                   }
                 </div>
                 <div className="mt-4 flex justify-end">
-                  <button className="font-bold py-2 px-4 rounded" onClick={() => navigate(`/viewkata/${kata.id}`)}>
+                  <button className="font-bold py-2 px-4 rounded" >
                     View Kata
                   </button>
                 </div>

@@ -1,6 +1,7 @@
 import React,{useEffect, useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { BsPlusCircle } from 'react-icons/bs';
+
 
 
 const DashBoard = () => {
@@ -321,14 +322,17 @@ const DashBoard = () => {
 									>
 										<div class='border-b-2 flex text-center justify-between align-items-center border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50'>
 											<p>Assessments(0)</p>
+											<Link to = "/assessments">
 											<button
 												style={{ color: "green", padding: "10px" }}
 												class='flex gap-1 items-center'
 												type='button'
+
 											>
 												<BsPlusCircle />
 												Create Assessment
 											</button>
+											</Link>
 										</div>
 										<div class='p-6 text-center mt-10 pt-10'>
 											<h5 class='mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50'>
@@ -339,6 +343,7 @@ const DashBoard = () => {
 												Assessments.
 											</p>
 											<div class='flex justify-center align-items-center'>
+											<Link to = "/assessments">
 												<button
 													style={{
 														paddingLeft: "30px",
@@ -354,6 +359,7 @@ const DashBoard = () => {
 													<BsPlusCircle />
 													Create Assessment
 												</button>
+												</Link>
 											</div>
 										</div>
 									</div>
