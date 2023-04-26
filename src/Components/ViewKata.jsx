@@ -45,30 +45,29 @@ function handleClick(id) {
     .then(response => {
       setKata(response)
       setCode(response.starter_code);
-      const kataObject = {
-        tests: response.tests,
-        starter_code: response.starter_code
-      };
-      console.log(response)
       
     })
 }
-function runTests() {
+function runTests(kata, code) {
   try {
     const tests = kata.tests;
     let allTestsPassed = true;
     for (let i = 0; i < tests.length; i++) {
       const input = tests[i].input;
+      console.log(input)
       const expectedOutput = tests[i].output;
+      console.log(code)
       const userOutput = eval(`${code}(${JSON.stringify(input)})`);
-      console.log(`Test ${i + 1} input: ${JSON.stringify(input)}`);
-      console.log(`Test ${i + 1} expected output: ${JSON.stringify(expectedOutput)}`);
-      console.log(`Test ${i + 1} user output: ${JSON.stringify(userOutput)}`);
-      if (JSON.stringify(expectedOutput) !== JSON.stringify(userOutput)) {
-        console.log(`Test ${i + 1} failed. Expected output: ${JSON.stringify(expectedOutput)}. Got output: ${JSON.stringify(userOutput)}`);
+      console.log(userOutput)
+      console.log(expectedOutput)
+      if (expectedOutput.toString() !== userOutput.toString()) {
+        console.log(`Test ${i + 1} failed. Expected output: ${expectedOutput}. Got output: ${userOutput}`);
         allTestsPassed = false;
+      } else {
+        console.log(`Test ${i + 1} passed!`);
       }
     }
+
     if (allTestsPassed) {
       console.log('All tests passed!');
     }
@@ -76,71 +75,42 @@ function runTests() {
     console.error(error);
   }
 }
-  
-// function runTests() {
-//   const tests = kata.tests;
-//   let allTestsPassed = true;
-
-//   for (let i = 0; i < tests.length; i++) {
-//     const input = tests[i].input;
-//     const expectedOutput = tests[i].output;
-//     let userOutput;
-
-//     try {
-//       userOutput = eval(`${code}(${JSON.stringify(...input)})`);
-//     } catch (error) {
-//       console.error(`Test ${i + 1} failed. Expected output: ${JSON.stringify(expectedOutput)}. Got error: ${error}`);
-//       allTestsPassed = false;
-//       continue;
-//     }
-
-//     if (JSON.stringify(expectedOutput) !== JSON.stringify(userOutput)) {
-//       console.error(`Test ${i + 1} failed. Expected output: ${JSON.stringify(expectedOutput)}. Got output: ${JSON.stringify(userOutput)}`);
-//       allTestsPassed = false;
-//     }
-//   }
-
-//   if (allTestsPassed) {
-//     console.log('All tests passed!');
-//   }
-// }
-
-
-// function runTests() {
-//   const testResults = kata.tests.map((test) => {
-//     try {
-//       const result = eval(`${code};\n${test.input}`);
-//       const passed = result === test.output;
-//       return {
-//         input: test.input,
-//         expectedOutput: test.output,
-//         actualOutput: result,
-//         passed: passed,
-//       };
-//     } catch (error) {
-//       return {
-//         input: test.input,
-//         expectedOutput: test.output,
-//         actualOutput: error.toString(),
-//         passed: false,
-//       };
-//     }
-//   });
-//   setOutput(JSON.stringify(testResults, null, 2));
-// }
-
-
 
   
-  function submitCode() {
-  
+ function submitCode() {
+  const user_id = sessionStorage.getItem('userId'); // function to get the current user ID
+  const assessment_id = assessment.id; // function to get the current assessment ID
+  const kata_id = kata.id; // function to get the current kata ID
+  const result = runTests(); // function to run the tests and get the result
+console.log( user_id,
+      assessment_id,
+      kata_id,
+      code,
+      result,)
+  fetch('http://localhost:3000/submissions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+    },
+    body: JSON.stringify({
+      user_id,
+      assessment_id,
+      kata_id,
+      code,
+      result
+    }),
+  })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error(error));
 }
+
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
-            <div className="p-4 mt-32 mb-6 mx-6 p-2 bg-slate-900 text-white">
-                <h1 className="font-bold"></h1>
+            <div className="p-4 mt-32 mb-6 mx-6 bg-slate-900 text-white">
                 <div>
                     <h2 className="">{assessment.title}</h2>
                     <div className="ml-5">
@@ -161,7 +131,7 @@ function runTests() {
                 </div>
             </div>
 
-     <div className="p-4 mt-32 mb-6 mx-6 p-2 bg-slate-900 flex justify-center">
+     <div className="p-4 mt-32 mb-6 mx-6  bg-slate-900 flex justify-center">
   <div className="w-full max-w-full h-full">
     <CodeMirror
       value={code}
@@ -171,7 +141,7 @@ function runTests() {
       extensions={[javascript({ jsx: true })]}
       onChange={onChange}
     />
-<button className='bg-green-500 text-white p-2 m-2' onClick={runTests}>Run tests</button>
+<button className='bg-green-500 text-white p-2 m-2' onClick={() => runTests(kata, code)}>Run tests</button>
     <button className='bg-green-500 max-w-sm m-2 p-2 text-white ' onClick={submitCode}>Submit</button>
     <div className='text-white'>{output}</div>
   </div>
