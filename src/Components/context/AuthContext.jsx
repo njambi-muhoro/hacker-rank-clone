@@ -145,7 +145,8 @@ export default function AuthProvider({children})
      const logout = () =>{
        sessionStorage.clear();
        localStorage.clear();
-             navigate('/login');
+         navigate('/login');
+         window.location.reload()
      }
     
     const contextData = {
