@@ -79,7 +79,7 @@ function NavBar({search,handleSearch}){
 								{!isLoggedIn && (
 									<>
 										<li className='pb-2 text-sm py-3 md:px-6 text-center border-b-2 md:border-b-0 hover:text-green-700 border-cyan-900'>
-											<Link to='/Products' onClick={() => setNavbar(!navbar)}>
+											<Link to='/' onClick={() => setNavbar(!navbar)}>
 												Products
 											</Link>
 										</li>

@@ -246,7 +246,9 @@ function handleKataSelect( id) {
           		) : null}
 				</>
       ) : (
-         <></>
+          <>
+            navigate('/login')
+          </>
 			)}
     
 
