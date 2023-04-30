@@ -13,7 +13,7 @@ import Assessments from "./Components/Assessments";
 import Details from "./Components/Details";
 import Questions from "./Components/Details/Questions";
 import Candidates from "./Components/Details/Candidates";
-import Invite from "./Components/Details/Invite";
+// import Results from "./Components/Details/Results";
 import Resources from "./Components/Resources";
 import Products from "./Components/Products";
 import Solutions from "./Components/Solutions";
@@ -27,6 +27,8 @@ import { useState } from "react";
 import ViewKata from "./Components/ViewKata";
 import Email from "./Components/Email";
 import Profile from "./Components/Profile";
+import Results from "./Components/Details/Results";
+import Submissions from "./Components/Submissions";
 
 
 function App() {
@@ -35,44 +37,39 @@ function App() {
      setSearch(value)
 	}
 	return (
-		
 		<>
-		
-		
 			<AuthProvider>
-
-				<NavBar  search = {search} handleSearch={handleSearch}/>
-				<div className="min-h-[70vh]">
+				<NavBar search={search} handleSearch={handleSearch} />
+				<div className='min-h-[70vh]'>
 					<Routes>
-					
-					<Route path="/viewkata/:id" element={<ViewKata />} />
-					<Route path='/' element={<HomePage />} />
-					<Route path='/login' element={<Login />} />
-					<Route path='/signup' element={<SignUp />} />
-					<Route path='/dashboard' element={<DashBoard />} />
-					<Route path='/library' element={<Library />} />
-					<Route path='/assessments' element={<Assessments />} />
-					<Route path='/email' element={<Email />} />
-					<Route path='/profile' element={<Profile />} />
-					<Route path='/details/:id' element={<Details />}>
-						<Route path='questions' element={<Questions  />} />
-						<Route path='candidates' element={<Candidates />} />
-						<Route path='invite' element={<Invite />} />
+						<Route path='/viewkata/:id' element={<ViewKata />} />
+						<Route path='/' element={<HomePage />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/signup' element={<SignUp />} />
+						<Route path='/dashboard' element={<DashBoard />} />
+						<Route path='/library' element={<Library />} />
+						<Route path='/assessments' element={<Assessments />} />
+						<Route path='/email' element={<Email />} />
+						<Route path='/profile' element={<Profile />} />
+						<Route path='/details/:id' element={<Details />}>
+							<Route path='questions' element={<Questions />} />
+							<Route path='candidates' element={<Candidates />} />
+							<Route path='results' element={<Results />} />
 						</Route>
-					
-					<Route path='Resources' element={<Resources />} />
-					<Route path='Products' element={<Products />} />
-					<Route path='Solutions' element={<Solutions />} />
-					<Route path='Questions' element={<QuestionPage />} />
-				</Routes>
+
+						<Route path='Resources' element={<Resources />} />
+						<Route path='Products' element={<Products />} />
+						<Route path='Solutions' element={<Solutions />} />
+						<Route path='Questions' element={<QuestionPage />} />
+						<Route
+							path='submissions/:id'
+							element={<Submissions />}
+						/>
+					</Routes>
 				</div>
-			
 
 				<Footer />
-			
-				
 			</AuthProvider>
-			
 		</>
 	);
 }
