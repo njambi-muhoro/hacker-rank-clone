@@ -22,6 +22,22 @@ function Table() {
       });
   }, [id]);
 
+
+  function deleteInvitation(id) {
+      fetch(`/invitations/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+        },
+      })
+        .then(res => res.json())
+        .then(response => {
+      console.log(response)
+    })
+  }
+
+  
   return (
     <div className="flex mt-5 sm:px-6 lg:px-8 h-[100vh] w-full">
       <div className="flex flex-col w-full">
@@ -66,8 +82,7 @@ function Table() {
           {invitation.end_date}
         </td>
         <td className="whitespace-nowrap px-6 py-4">
-         <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2">View</button>
-        </td>
+<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2" onClick={() => deleteInvitation(invitation.id)}>Delete</button>        </td>
       </tr>
     ))}
 </tbody>

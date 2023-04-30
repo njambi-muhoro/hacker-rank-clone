@@ -14,7 +14,7 @@ function Details() {
 <Link to={`/details/${id}/candidates`} className="text-gray-600 hover:text-gray-800 border-b-4 border-black-500">Candidates</Link>
             </li>
             <li className="mr-6">
-<Link to={`/details/invite-links`} className="text-gray-600 hover:text-gray-800 border-b-4 border-black-500">Invite Links</Link>
+<Link to={`/details/${id}/results`} className="text-gray-600 hover:text-gray-800 border-b-4 border-black-500">Results</Link>
             </li>
           </ul>
         </nav>
