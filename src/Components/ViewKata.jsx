@@ -31,7 +31,7 @@ function ViewKata() {
           });
         }, 1000);
         setIntervalId(interval);
-      }
+      } 
       return () => {
         clearInterval(intervalId);
       };
@@ -76,7 +76,7 @@ function ViewKata() {
     useEffect(() => {
        const duration = parseInt(assessment.duration);
         setRemainingTime(duration * 60);
-     fetch(`http://localhost:4500/assessments/${id}`, {
+     fetch(`http://localhost:3000/assessments/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -95,7 +95,7 @@ function ViewKata() {
 
 function handleClick(id) {
  
-  fetch(`http://localhost:4500/katas/${id}`, {
+  fetch(`http://localhost:3000/katas/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
