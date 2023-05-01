@@ -20,12 +20,19 @@ useEffect(() => {
     .then(response => {
       setSubmissions(response)
       console.log(response)
+      
       const allTestsPassed = response.every(submission => submission.result === true);
       const percentageResult = allTestsPassed ? 100 : 0;
-      setPercentage(percentageResult);
+      
+      // Calculate average percentage
+      const totalPercentage = response.reduce((total, submission) => total + submission.percentage, 0);
+      const averagePercentage = totalPercentage / response.length;
+      
+      setPercentage(averagePercentage);
     })
 }, [id]);
 
+const circumference = 2 * Math.PI * 30;
 
     
   return (
@@ -39,33 +46,48 @@ useEffect(() => {
              <>   
         <div key={submission.id} className='bg-white w-full flex justify-between rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
         <div>{submission.assessment.title}</div>
-        <div>{submission.kata.name}</div>
-        <div>{submission.result ? 'Passed' : 'Failed'}</div>
+                  <div>{submission.kata.name}</div>
+                  <div>{submission.result}</div>
+                  <div>{submission.percentage}%</div>
+<div>{submission.percentage === 0 ? 'Failed' : 'Passed'}</div>
         
    </div>
          </> 
 
         ))}</div>
- <div className='relative mx-4 rounded-lg w-1/4 shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
+<div className='relative mx-4 rounded-lg w-1/4 shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10 bg-white'>
   <h1>Total score</h1>
-  <div className="relative rounded-full h-32 w-32 flex items-center justify-center bg-gray-200">
-  <div className="absolute top-0 left-0 w-full h-full rounded-full border-4 border-blue-500"></div>
-  <div
-    className="absolute top-0 left-0 w-full h-full rounded-full border-4 border-transparent"
-    style={{
-      clip: `rect(0px, 16px, 32px, 0px)`,
-      transform: `rotate(${(percentage / 100) * 360}deg)`,
-      transition: `transform 0.6s ease 0s`,
-      borderWidth: '4px',
-      borderColor: '#1E90FF transparent transparent #1E90FF'
-    }}
-  ></div>
-  <div className="absolute top-0 left-0 w-full h-full rounded-full flex items-center justify-center">
-    <div className="text-4xl font-bold text-blue-500">{percentage}%</div>
+  <div x-data="scrollProgress" class="absolute inset-0 flex items-center justify-center">
+    <svg class="w-20 h-20">
+      <circle
+        class="text-gray-300"
+        stroke-width="5"
+        stroke="currentColor"
+        fill="transparent"
+        r="30"
+        cx="40"
+        cy="40"
+      />
+      <circle
+        className="text-green-600"
+        strokeWidth="5"
+        stroke="currentColor"
+        fill="transparent"
+        r="30"
+        cx="40"
+        cy="40"
+        strokeLinecap="round"
+        style={{
+          strokeDasharray: circumference,
+          strokeDashoffset: circumference - (percentage / 100) * circumference,
+        }}
+      />
+    </svg>
+    <span class="absolute text-xl text-green-500">{percentage}%</span>
   </div>
 </div>
 
-</div>
+
 
 
 

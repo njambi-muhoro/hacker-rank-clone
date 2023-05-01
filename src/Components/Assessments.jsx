@@ -5,6 +5,8 @@ import { ImCross } from 'react-icons/im';
 import { AiFillDelete } from 'react-icons/ai';
 import { HiViewGridAdd } from 'react-icons/hi';
 import Modal from 'react-modal';
+import Swal from "sweetalert2"
+
 
 function Assessments() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -31,23 +33,76 @@ function Assessments() {
 const handleSubmit = (e) => {
   e.preventDefault();
   // handle submission logic here
-   fetch(`http://localhost:3000/assessments`,{
-            method: "POST",
-            headers:{
-              "Content-Type": "application/json",
-              'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
-            },
-            body: JSON.stringify({
-                title, duration, userId
-            })
-        }
-        )
-     .then(res => res.json())
-     .then(response => {
-       setModalIsOpen(false);
-      window.location.reload()
-    console.log(response)
+ fetch(`http://localhost:3000/assessments`,{
+  method: "POST",
+  headers:{
+    "Content-Type": "application/json",
+    'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+  },
+  body: JSON.stringify({
+    title, duration, userId
   })
+})
+.then(res => res.json())
+   .then(response => {
+     setModalIsOpen(false);
+     
+  // setAssessments([...assessments, response]);
+  if (response.status === 'success') {
+    
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    Toast.fire({
+      icon: 'success',
+      title: 'Assessment created successfully'
+    })
+    window.location.reload();
+  } else if (response.status === 'error') {
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    Toast.fire({
+      icon: 'error',
+      title: response.message
+    })
+  }
+})
+.catch(error => {
+  console.log(error);
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  Toast.fire({
+    icon: 'error',
+    title: 'Oops! Something went wrong.'
+  })
+});
+
 }
     useEffect(() => {
   
@@ -95,7 +150,7 @@ function handleKataSelect( id) {
   })
 }
 
-  function deleteAssessment(id) {
+function deleteAssessment(id) {
   fetch(`/assessments/${id}`, {
     method: 'DELETE',
     headers: {
@@ -105,8 +160,9 @@ function handleKataSelect( id) {
   })
   .then(response => {
     if (response.ok) {
-      // Reload the assessments list or show a success message
-      window.location.reload()
+      // Remove the deleted assessment from the assessments list state
+      setAssessments(assessments.filter(assessment => assessment.id !== id));
+      // Or you can refetch the assessments list from the server to update the list
     } else {
       // Handle the error
     }
@@ -114,7 +170,8 @@ function handleKataSelect( id) {
   .catch(error => {
     // Handle the error
   });
-  }
+}
+
   
   useEffect(() => {
     fetch(`http://localhost:3000/invitations`, {
@@ -224,13 +281,13 @@ function handleKataSelect( id) {
       <Link style={{ color: "green", padding: "10px" }}
         class='flex gap-1 items-center'
         type='button' to={`/details/${assessment.id}`}><HiViewGridAdd/>view</Link>
-      <button style={{ color: "green", padding: "10px" }}
-        class='flex gap-1 items-center'
+      <button style={{  padding: "10px" }}
+        class='flex gap-1 items-center text-red-300 hover:text-red-700 '
         type='button' onClick={() => deleteAssessment(assessment.id)}><AiFillDelete/>Delete</button>
     </div>
   </div>
   <button
-    className="absolute top-0 right-0 m-4 py-2 px-4 text-black font-bold rounded"
+    className="absolute flex  justify-center items-center mx-auto gap-1 top-0 right-0 m-4 py-2 px-4 text-green-700 font-bold rounded"
     onClick={() => handleAddClick(assessment.id)}
   >
     <GoPlus /> Add

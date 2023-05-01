@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import {AiFillDelete} from 'react-icons/ai'
 
 function Table() {
   const [assessments, setAssessments] = useState([]);
@@ -47,23 +48,26 @@ function Table() {
               <table className="w-full min-w-full text-left text-sm font-light">
                 <thead className="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
                   <tr>
-                    <th scope="col" className="px-6 text-xl py-4 font-bold">
+                     <th scope="col" className="py-2 px-4 text-left uppercase">
+                      NO.
+                    </th>
+                    <th scope="col" className="py-2 px-4 text-left uppercase">
                       Email
                     </th>
-                    <th scope="col" className="px-6 text-xl py-4 font-bold">
+                    <th scope="col" className="py-2 px-4 text-left uppercase">
                       Status
                     </th>
-                    <th scope="col" className="px-6 text-xl py-4 font-bold">
+                    <th scope="col" className="py-2 px-4 text-left uppercase">
                       End Date
                     </th>
-                    <th scope="col" className="px-6 text-xl py-4 font-bold">
+                    <th scope="col" className="py-2 px-4 text-left uppercase">
                       Action
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+      <tbody>
   {Array.isArray(assessments?.invitations) &&
-    assessments.invitations.map(invitation => (
+    assessments.invitations.map((invitation, index) => (
       <tr
         key={invitation.id}
         className={
@@ -72,8 +76,11 @@ function Table() {
             : 'border-b bg-white dark:border-neutral-500 dark:bg-neutral-600'
         }
       >
+         <td className="whitespace-nowrap px-6 py-4 font-medium">
+          {index + 1}.
+        </td>
         <td className="whitespace-nowrap px-6 py-4 font-medium">
-          {invitation.email}
+           {invitation.email}
         </td>
         <td className="whitespace-nowrap px-6 py-4">
           {invitation.status}
@@ -82,10 +89,12 @@ function Table() {
           {invitation.end_date}
         </td>
         <td className="whitespace-nowrap px-6 py-4">
-<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded mr-2" onClick={() => deleteInvitation(invitation.id)}>Delete</button>        </td>
+          <button class="bg-red-300 hover:bg-red-700 text-white font-bold py-1 px-2 rounded mr-2" onClick={() => deleteInvitation(invitation.id)}><AiFillDelete/></button>
+        </td>
       </tr>
     ))}
 </tbody>
+
 
               </table>
             </div>
