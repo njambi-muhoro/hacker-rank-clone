@@ -1,12 +1,12 @@
 
 import React,{useContext, useEffect, useRef} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import { useState } from 'react';
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
 import { AuthContext } from './context/AuthContext';
 import { useNavigate } from 'react-router-dom'
-import Search from './Search';
+// import Search from './Search';
 
 
 function NavBar({search,handleSearch}){
@@ -17,6 +17,7 @@ function NavBar({search,handleSearch}){
 	const [isOpen, setIsOpen] = useState(false);
 	const dropdownRef = useRef(null);
 	const toggleMenu = () => setIsOpen(!isOpen);
+	 const location = useLocation();
 	const handleLogout = () => {
 		logout();
 		toggleMenu();
@@ -35,7 +36,9 @@ function NavBar({search,handleSearch}){
 	}, [dropdownRef]);
 
 	const navigate = useNavigate()
-
+ const isActive = (path) => {
+		return location.pathname.includes(path);
+ };
 	return (
 		<>
 			<nav
@@ -199,7 +202,7 @@ function NavBar({search,handleSearch}){
 											{isOpen && (
 												<div className='absolute z-50 mt-2 right-0 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 dark:border dark:border-gray-700'>
 													<a
-														// href='!#'
+														href='!#'
 														onClick={() => {
 															navigate("/profile");
 														}}
