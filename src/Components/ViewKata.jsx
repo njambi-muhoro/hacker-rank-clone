@@ -10,6 +10,57 @@ import { okaidia } from '@uiw/codemirror-theme-okaidia';
 function ViewKata() {
     const [code, setCode] = useState('')
     const { id } = useParams()
+    const [remainingTime, setRemainingTime] = useState(0);
+
+    const [intervalId, setIntervalId] = useState(null);
+    const [submitClicked, setSubmitClicked] = useState(false);
+
+    
+    useEffect(() => {
+      if (!submitClicked && remainingTime > 0) {
+        const interval = setInterval(() => {
+          setRemainingTime(prev => {
+            if (prev === 1) {
+              clearInterval(interval);
+              return 0;
+            } else if (prev > 1) {
+              return prev - 1;
+            } else {
+              return prev;
+            }
+          });
+        }, 1000);
+        setIntervalId(interval);
+      }
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, [submitClicked, remainingTime]);
+    
+  //    useEffect(() => {
+  //   if (!submitClicked && remainingTime > 0) {
+  //     const interval = setInterval(() => {
+  //       setRemainingTime(prev => {
+  //         if (prev === 1) {
+  //           clearInterval(interval);
+  //           if (!submitClicked) { // check if submit button is not clicked
+  //             submitCode(); // call submitCode function
+  //           }
+  //           return 0;
+  //         } else if (prev > 1) {
+  //           return prev - 1;
+  //         } else {
+  //           return prev;
+  //         }
+  //       });
+  //     }, 1000);
+  //     setIntervalId(interval);
+  //   }
+  //   return () => {
+  //     clearInterval(intervalId);
+  //   };
+  // }, [submitClicked, remainingTime]);
+
     const [assessment, setAssessment] = useState({})
     const [kata, setKata] = useState('')
     const [output, setOutput] = useState('')
@@ -20,7 +71,9 @@ function ViewKata() {
  
 
     useEffect(() => {
-     fetch(`http://localhost:3000/assessments/${id}`, {
+       const duration = parseInt(assessment.duration);
+        setRemainingTime(duration * 60);
+     fetch(`http://localhost:4500/assessments/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -29,12 +82,17 @@ function ViewKata() {
     })
     .then(response => response.json())
     .then(response => {
+    
         setAssessment(response)
+       
     })
 
-    }, [id])
+    }, [assessment.duration])
+    
+
 function handleClick(id) {
-  fetch(`http://localhost:3000/katas/${id}`, {
+ 
+  fetch(`http://localhost:4500/katas/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -45,12 +103,14 @@ function handleClick(id) {
     .then(response => {
       setKata(response)
       setCode(response.starter_code);
-      
+     
+
     })
 }
   
-  
-function runTests(kata, code) {
+  //   const testFn = new Function('code', 'input', `return ${code}(${JSON.stringify(input)});`);
+ // const userOutput = testFn(code, input);
+ function runTests(kata, code) {
   try {
     const tests = kata.tests;
     let allTestsPassed = true;
@@ -80,34 +140,36 @@ function runTests(kata, code) {
 
 
   
- function submitCode() {
-  const user_id = sessionStorage.getItem('userId'); // function to get the current user ID
-  const assessment_id = assessment.id; // function to get the current assessment ID
-  const kata_id = kata.id; // function to get the current kata ID
-  const result = runTests(); // function to run the tests and get the result
-console.log( user_id,
-      assessment_id,
-      kata_id,
-      code,
-      result,)
-  fetch('http://localhost:3000/submissions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
-    },
-    body: JSON.stringify({
-      user_id,
-      assessment_id,
-      kata_id,
-      code,
-      result
-    }),
+function submitCode() {
+  setSubmitClicked(true);
+
+  const user_id = sessionStorage.getItem('userId');
+  const assessment_id = assessment.id;
+  const kata_id = kata.id;
+  const result = runTests(); // pass kata and code as arguments
+  console.log(user_id, assessment_id, kata_id, code, result);
+  fetch('http://localhost:4500/student_kata_attempts', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+      },
+      body: JSON.stringify({
+          user_id,
+          assessment_id,
+          kata_id,
+          code,
+          result
+      }),
   })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error(error));
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      // document.location.reload();
+  })
+  .catch(error => console.error(error));
 }
+
 
 
     return (
@@ -116,6 +178,7 @@ console.log( user_id,
             <div className="p-4 mt-32 mb-6 mx-6 bg-slate-900 text-white">
                 <div>
                     <h2 className="">{assessment.title}</h2>
+                    <h>{assessment.duration}</h>
                     <div className="ml-5">
                         {assessment.katas && assessment.katas.map((kata, index) => {
                             return (
@@ -126,10 +189,12 @@ console.log( user_id,
                         })
 
                         }
+                        <div style={{color:"red", fontSize:"30px"}} className="text-white">{Math.floor(remainingTime / 60)}:{remainingTime % 60}</div>
                                 <div className="my-2 text-white">
                                     <p>{kata.description}</p>
                                 </div>
-
+                                
+                               
                     </div>
                 </div>
             </div>
