@@ -63,7 +63,10 @@ function ViewKata() {
 
     const [assessment, setAssessment] = useState({})
     const [kata, setKata] = useState('')
-    const [output, setOutput] = useState('')
+  const [output, setOutput] = useState('')
+  const [results, setResults] = useState([]);
+  const [testResult, setTestResult] = useState('')
+
     const onChange = React.useCallback((value, viewUpdate) => {
     console.log('value:', value);
       setCode(value);
@@ -113,33 +116,36 @@ function handleClick(id) {
  function runTests(kata, code) {
   try {
     const tests = kata.tests;
-    let allTestsPassed = true;
+    const results = [];
+    let passedTestsCount = 0;
     for (let i = 0; i < tests.length; i++) {
       const input = tests[i].input;
       const expectedOutput = tests[i].output;
       const testFn = new Function('code', 'input', `return ${code}(${JSON.stringify(input)});`);
       const userOutput = testFn(code, input);
-      if (expectedOutput !== userOutput) {
-        console.log(`Test ${i + 1} failed. Expected output: ${expectedOutput}. Got output: ${userOutput}`);
-        allTestsPassed = false;
-      } else {
-        console.log(`Test ${i + 1} passed!`);
+      const testPassed = expectedOutput === userOutput;
+      // results.push({ input, expectedOutput, userOutput, testPassed });
+      if (testPassed) {
+        passedTestsCount++;
       }
     }
 
-    if (allTestsPassed) {
-      console.log('All tests passed!');
-    }
+    const percentage = tests.length === passedTestsCount ? 100 : Math.round((passedTestsCount / tests.length) * 100);
+    const result = (`Passed ${passedTestsCount} out of ${tests.length} tests. Result: ${percentage}%`);
+    // console.log(`Passed ${passedTestsCount} out of ${tests.length} tests. Result: ${percentage}%`);
+    setTestResult(result)
+    setResults(results);
+    console.log(testResult)
 
-    return allTestsPassed;
+    return percentage;
   } catch (error) {
     console.error(error);
-    return false;
+    return 0;
   }
 }
 
-
   
+
 function submitCode() {
   setSubmitClicked(true);
 
@@ -170,9 +176,19 @@ function submitCode() {
   .catch(error => console.error(error));
 }
 
+  //  const [remainingTime, setRemainingTime] = useState(assessment.duration * 60);
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setRemainingTime((prevTime) => prevTime - 1);
+  //   }, 1000);
+
+  //   return () => clearInterval(intervalId);
+  // }, []);
 
 
     return (
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 
             <div className="p-4 mt-32 mb-6 mx-6 bg-slate-900 text-white">
@@ -211,14 +227,39 @@ function submitCode() {
     />
 <button className='bg-green-500 text-white p-2 m-2' onClick={() => runTests(kata, code)}>Run tests</button>
     <button className='bg-green-500 max-w-sm m-2 p-2 text-white ' onClick={submitCode}>Submit</button>
-    <div className='text-white'>{output}</div>
-  </div>
+  <div>
+              <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+  <thead>
+    <tr>
+      <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Test Case #</th>
+      <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Input</th>
+      <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Expected Output</th>
+      <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Gotten Output</th>
+      <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Test Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    {/* {results && results.map((result, index) => (
+      <tr key={index}>
+        <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{index + 1}</td>
+        <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{JSON.stringify(result.input)}</td>
+        <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{JSON.stringify(result.expectedOutput)}</td>
+        <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{JSON.stringify(result.userOutput)}</td>
+        <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left', color: result.testPassed ? 'green' : 'red' }}>{result.testPassed ? 'Passed' : 'Failed'}</td>
+      </tr>
+    ))} */}
+  </tbody>
+</table>
+
 </div>
 
 
 
 
+
         </div>
+      </div>
+    </div>
     )
 }
 

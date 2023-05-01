@@ -45,6 +45,7 @@ const handleSubmit = (e) => {
      .then(res => res.json())
      .then(response => {
        setModalIsOpen(false);
+      window.location.reload()
     console.log(response)
   })
 }
@@ -55,19 +56,19 @@ const handleSubmit = (e) => {
     .then(res => res.json())
     .then(data => setKatas(data));
      
-  fetch(`http://localhost:3000/assessments`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
-    }
+ fetch(`http://localhost:3000/assessments?userId=${userId}`, {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+  }
+})
+  .then(res => res.json())
+  .then(response => {
+    setAssessments(response)
+    console.log(response)
   })
-    .then(res => res.json())
-    .then(response => {
-      setAssessments(response)
-      console.log(response)
-    })
-}, []);
+}, [userId]);
 
 
 function handleAddClick(id) {
@@ -79,7 +80,7 @@ function handleAddClick(id) {
 function handleKataSelect( id) {
     const kata_id = id
     
-  fetch(`/assessment_katas`, {
+  fetch(`http://localhost:3000/assessment_katas`, {
     method:'POST',
     headers:{
       "Content-Type": "application/json",
@@ -156,11 +157,16 @@ function handleKataSelect( id) {
                       invitations && invitations.map((invitation) => (
                         <div key={invitation.id}>
                           <Link to={`/viewkata/${invitation.assessment.id}`}>
-                          <div className='bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
-                            <div className='text-lg font-bold text-gray-900'>{invitation.assessment.title}</div>
+                          <div className='bg-white flex justify-between rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
+                            <div>
+                              <div className='text-lg font-bold text-gray-900'>{invitation.assessment.title}</div>
                                 <div className='text-xm font-bold text-gray-600'>{ invitation.assessment.duration} minutes</div>
-                          </div>
+                              </div>
+                              <div><Link to={`/Submissions/${invitation.assessment.id}`}>Results</Link></div>
+                              </div>
+                            
                           </Link>
+                          
                         </div>
                       ))
                     }
