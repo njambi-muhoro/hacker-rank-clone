@@ -154,7 +154,7 @@ function submitCode() {
   const kata_id = kata.id;
   const result = runTests(); // pass kata and code as arguments
   console.log(user_id, assessment_id, kata_id, code, result);
-  fetch('http://localhost:4500/student_kata_attempts', {
+  fetch('http://localhost:3000/student_kata_attempts', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
