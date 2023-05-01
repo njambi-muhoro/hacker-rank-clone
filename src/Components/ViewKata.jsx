@@ -303,3 +303,4 @@ const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString
 }
 
 export default ViewKata;
+
