@@ -19,7 +19,7 @@ function Candidates() {
    event.preventDefault();
    console.log(assessment_id, user_id, status, note, email, end_date)
     // Handle form submission
-   fetch(`https://hacheranck.onrender.com/invitations`, {
+   fetch(`https://hackerank.onrender.com/invitations`, {
      method: "POST",
      headers: {
        "Content-Type": "application/json",

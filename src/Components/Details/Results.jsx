@@ -8,7 +8,7 @@ function Results() {
 
 
   useEffect(() => {
-    fetch(`https://hacheranck.onrender.com/submissions?assessment_id=${id}`, {
+    fetch(`https://hackerank.onrender.com/submissions?assessment_id=${id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
