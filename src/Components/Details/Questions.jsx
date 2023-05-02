@@ -18,7 +18,7 @@ function Questions() {
   }, [id]);
 
   function deleteKata(id) {
-    fetch(`http://localhost:3000/assessment_katas/${id}`, {
+    fetch(`/assessment_katas/${id}`, {
       method: 'DELETE',
            headers: {
        "Content-Type": "application/json",

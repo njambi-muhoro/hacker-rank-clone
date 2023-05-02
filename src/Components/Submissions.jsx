@@ -9,7 +9,7 @@ function Submissions() {
   const [percentage, setPercentage] = useState('')
   
 useEffect(() => {  
-  fetch(`http://localhost:3000/submissions?assessment_id=${id}`, {
+  fetch(`/submissions?assessment_id=${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
