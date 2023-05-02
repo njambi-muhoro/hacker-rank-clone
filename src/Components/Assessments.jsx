@@ -219,7 +219,7 @@ function deleteAssessment(id) {
                               <div className='text-lg font-bold text-gray-900'>{invitation.assessment.title}</div>
                                 <div className='text-xm font-bold text-gray-600'>{ invitation.assessment.duration} minutes</div>
                               </div>
-                              <div><Link to={`/Submissions/${invitation.assessment.id}`}>Results</Link></div>
+                              <div className='text-green-600 font-medium'><Link to={`/Submissions/${invitation.assessment.id}`}>Results</Link></div>
                               </div>
                             
                           </Link>
@@ -234,13 +234,13 @@ function deleteAssessment(id) {
           ) : userType === "TM" ? (
           <>
       <section className="w-full mt-[10vh]">
-        <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8">
+        <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:flex md:px-8 mb-10">
           <div className="w-full flex items-center justify-between px-3 h-40  bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mt-4 ">
             <div
-              className="text-sm"
+              className="text-xm font-md"
               style={{ width: '70%', padding: '10px' }}
             >
-              <p>
+              <p >
                 Welcome, we're excited to hear that you're interested in creating
                 a coding test. Our team is ready to help you design an assessment
                 that accurately evaluates the skills of the developers you're
@@ -262,16 +262,16 @@ function deleteAssessment(id) {
                 </section>
                  <section className="w-full">
   <div className="px-4 mx-auto lg:max-w-6xl md:items-center md:px-8">
-    <h1>My Assessments</h1>
+    <h1 className='font-bold text-xl mb-10'>My Assessments</h1>
     <div>
-      <div className="grid lg:grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 sm:grid-cols-1 md:grid-cols-2 ">
         {Array.isArray(assessments) && assessments.map((assessment) => (
        <div key={assessment.id} className="max-w-sm rounded overflow-hidden shadow-lg relative">
-  <div className="px-6 py-4">
+  <div className="px-10 py-10">
     <div className="font-bold text-xl mb-2">
       {assessment.title} ({assessment.assessment_katas ? assessment.assessment_katas.length : 0})
     </div>
-    <p className="text-gray-700 text-base">Duration: {assessment.duration}</p>
+    <p className="text-gray-700 text-base">Duration: {assessment.duration} minutes</p>
     <ul className="list-disc mt-4">
       {assessment.assessment_kata && assessment.assessment_kata.map((kata) => (
         <li key={kata.id}>{kata.name}</li>
@@ -287,7 +287,7 @@ function deleteAssessment(id) {
     </div>
   </div>
   <button
-    className="absolute flex  justify-center items-center mx-auto gap-1 top-0 right-0 m-4 py-2 px-4 text-green-700 font-bold rounded"
+    className="absolute flex  justify-center items-center mx-auto gap-1 top-0 right-0 m-4 py-0 px-3 text-green-700 font-bold rounded "
     onClick={() => handleAddClick(assessment.id)}
   >
     <GoPlus /> Add
@@ -305,7 +305,7 @@ function deleteAssessment(id) {
                 <li key={kata.id} className="px-4 py-2 cursor-pointer hover:bg-gray-200">
                   {kata.name}
                   <button
-                    className="ml-4 py-1 px-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
+                    className="ml-4 py-1 px-2 bg-green-600 hover:bg-green-700 text-white font-bold rounded"
                     onClick={() => handleKataSelect(kata.id)}
                   >
                     Add

@@ -38,13 +38,13 @@ const circumference = 2 * Math.PI * 30;
   return (
     <div className='min-h-screen bg-gray-100 items-center mt-[10vh]' style={{ minHeight: '100vh' }}>
       <div className="lg:max-w-6xl mx-auto px-10 sm:px-6 lg:px-8 ">
-        <h1>Your test summary</h1>
+        <h1 className='font-bold mt-[12vh] text-2xl'>Your test summary</h1>
         <div className='flex'>
-        <div className='bg-white w-3/4 rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
-          <h1>Tasks summary</h1>
+        <div className='bg-white w-3/4 rounded-lg shadow-md p-9 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
+          <h1 className='font-medium'>Tasks summary</h1>
             {submissions && Array.isArray(submissions) && submissions.map((submission) => (
              <>   
-        <div key={submission.id} className='bg-white w-full flex justify-between rounded-lg shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
+        <div key={submission.id} className='bg-white w-full flex justify-between rounded-lg shadow-md p-9 hover:shadow-lg transition duration-300 ease-in-out mt-10'>
         <div>{submission.assessment.title}</div>
                   <div>{submission.kata.name}</div>
                   <div>{submission.result}</div>
@@ -55,9 +55,9 @@ const circumference = 2 * Math.PI * 30;
          </> 
 
         ))}</div>
-<div className='relative mx-4 rounded-lg w-1/4 shadow-md p-4 hover:shadow-lg transition duration-300 ease-in-out mt-10 bg-white'>
-  <h1>Total score</h1>
-  <div x-data="scrollProgress" class="absolute inset-0 flex items-center justify-center">
+<div className='relative mx-4 rounded-lg w-1/4 shadow-md p-2 hover:shadow-lg transition duration-300 ease-in-out mt-10 bg-white px-4'>
+  <h1 className='font-medium'>Total score</h1>
+  <div x-data="scrollProgress" class="absolute inset-0 flex items-center justify-end px-4">
     <svg class="w-20 h-20">
       <circle
         class="text-gray-300"
@@ -83,7 +83,7 @@ const circumference = 2 * Math.PI * 30;
         }}
       />
     </svg>
-    <span class="absolute text-xl text-green-500">{percentage}%</span>
+    <span class="absolute text-xm text-green-500 px-4">{percentage}%</span>
   </div>
 </div>
 
