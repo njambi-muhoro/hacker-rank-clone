@@ -13,7 +13,7 @@ function ViewKata() {
     const [assessment, setAssessment] = useState({})
     const [kata, setKata] = useState('')
   const [results, setResults] = useState([]);
-  const [testResult, setTestResult] = useState('')
+  // const [testResult, setTestResult] = useState('')
    const [remainingTime, setRemainingTime] = useState(0);
   const [isStarted, setIsStarted] = useState(false);
   const [intervalId, setIntervalId] = useState(null);
@@ -84,46 +84,32 @@ function runTests(kata, code) {
 }
 
 
-  
-function checkIfKataSubmitted(user_id, assessment_id, kata_id) {
-  return fetch(`http://localhost:3000/submissions?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata_id}`, {
+function submitCode() {
+  const user_id = sessionStorage.getItem('userId');
+  const assessment_id = assessment.id;
+  const kata_id = kata.id;
+  const testResult = runTests(kata, code);
+  const percentage = testResult.percentage;
+  const passedTestsResult = testResult.passedTestsResult;
+
+  // Check if a similar submission exists for the current user, assessment, and kata
+  fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata_id}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
     },
   })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => data.length > 0)
-  .catch(error => {
-    console.error('Error:', error);
-    return false;
-  });
-}
-
-function submitCode() {
-  const user_id = sessionStorage.getItem('userId'); // function to get the current user ID
-  const assessment_id = assessment.id; // function to get the current assessment ID
-  const kata_id = kata.id; // function to get the current kata ID
-  const testResult = runTests(kata, code); // function to run the tests and get the result
-
-  const percentage = testResult.percentage;
-  const passedTestsResult = testResult.passedTestsResult;
-
-  // check if timer is zero
-  if (assessment.timer === 0) {
-    const katas = assessment.katas; // get all the katas in the assessment
-    katas.forEach((kata) => {
-      const isSubmitted = checkIfKataSubmitted(user_id, assessment_id, kata.id); // function to check if kata is submitted
-      if (!isSubmitted) {
-        const testResult = runTests(kata, code); // run tests for the current kata
-        const percentage = testResult.percentage;
-        const passedTestsResult = testResult.passedTestsResult;
-        // submit the code for the current kata
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.exists) {
+        window.alert('You have already submitted a solution for this kata.');
+      } else {
+        // Submit the code
         fetch('http://localhost:3000/submissions', {
           method: 'POST',
           headers: {
@@ -133,25 +119,59 @@ function submitCode() {
           body: JSON.stringify({
             user_id,
             assessment_id,
-            kata_id: kata.id,
+            kata_id,
             code,
             percentage,
             result: passedTestsResult
           }),
         })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            window.alert('Submission successful!');
+            window.location.href = `/submissions/${assessment.id}`;
+          })
+          .catch(error => {
+            window.alert('Submission failed. Please try again.');
+            console.error('Error:', error);
+          });
       }
+    })
+    .catch(error => {
+      console.error('Error:', error);
     });
-  } else { // if timer is not zero, submit the code for the current kata only
-    const isSubmitted = checkIfKataSubmitted(user_id, assessment_id, kata_id); // function to check if kata is submitted
-    if (!isSubmitted) {
+}
+
+function submitCode() {
+  const user_id = sessionStorage.getItem('userId');
+  const assessment_id = assessment.id;
+  const kata_id = kata.id;
+  const testResult = runTests(kata, code);
+  const percentage = testResult.percentage;
+  const passedTestsResult = testResult.passedTestsResult;
+
+// Check if a similar submission exists for the current user, assessment, and kata
+fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata_id}`, {
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+  },
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    if (data.exists) {
+      window.alert('You have already submitted a solution for this kata.');
+    } else {
+      // Submit the code
       fetch('http://localhost:3000/submissions', {
         method: 'POST',
         headers: {
@@ -167,17 +187,94 @@ function submitCode() {
           result: passedTestsResult
         }),
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then(data => console.log(data))
-      .catch(error => console.error('Error:', error));
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+  const currentKataIndex = assessment.katas.findIndex(kata => kata.id === kata_id);
+  if (currentKataIndex === assessment.katas.length - 1) {
+    window.alert('Congratulations, you have completed all the katas!');
+     // Redirect to the next kata
+      window.location.href = `/submissions/${assessment.id}`;
+  } else {
+    const nextKataIndex = currentKataIndex + 1;
+    const nextKataId = assessment.katas[nextKataIndex].id;
+    window.alert('Submission successful! Proceeding to the next kata.');
+   
+  }
+})
+        .catch(error => {
+          window.alert('Submission failed. Please try again.');
+          console.error('Error:', error);
+        });
     }
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+  // Submit all unsubmitted katas when the timer is 0
+  if (assessment.timer === 0) {
+    const katas = assessment.katas;
+    katas.forEach((kata) => {
+      fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata.id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+        },
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (!data.exists) {
+            const testResult = runTests(kata, code);
+            const percentage = testResult.percentage;
+            const passedTestsResult = testResult.passedTestsResult;
+            fetch('http://localhost:3000/submissions', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
+              },
+              body: JSON.stringify({
+                user_id,
+                assessment_id,
+                kata_id: kata.id,
+                code,
+                percentage,
+                result: passedTestsResult
+              }),
+            })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Network response was not ok');
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log('Submission successful for kata ' + kata.id);
+              })
+              .catch(error => {
+                console.error('Error:', error);
+              });
+          } else {
+            window.alert('You have already submitted a solution for this kata.');
+          }
+        })
+    });
   }
 }
+
+
+
+
 
 
 useEffect(() => {
@@ -202,7 +299,7 @@ useEffect(() => {
 
 function startTimer() {
   setIsStarted(true);
-  setRemainingTime(assessment.duration * 60); // convert minutes to seconds
+  setRemainingTime(assessment.duration ); // convert minutes to seconds
 }
 
 
