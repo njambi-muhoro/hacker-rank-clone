@@ -173,7 +173,7 @@ function deleteAssessment(id) {
   });
 }
 
-  
+  // fetch invitations
   useEffect(() => {
     fetch(`https://hackerank.onrender.com/invitations`, {
     method: "GET",
