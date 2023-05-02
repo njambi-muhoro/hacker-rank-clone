@@ -7,7 +7,7 @@ function Library({search}) {
   const navigate = useNavigate()
 
   useEffect(() => {
-    fetch(`https://hacheranck.onrender.com/katas`)
+    fetch(`https://hackerank.onrender.com/katas`)
       .then(res => res.json())
       .then(response => {
         setKatas(response);

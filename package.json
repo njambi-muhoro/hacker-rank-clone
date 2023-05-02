@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "https://hacheranck.onrender.com",
+  "proxy": "https://hackerank.onrender.com",
   "private": true,
   "dependencies": {
     "@codemirror/lang-javascript": "^6.1.7",

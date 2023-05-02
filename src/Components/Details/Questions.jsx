@@ -9,7 +9,7 @@ function Questions() {
 
   useEffect(() => {
     // make an API call to retrieve the assessment and katas data
-    fetch(`https://hacheranck.onrender.com/assessments/${id}`)
+    fetch(`https://hackerank.onrender.com/assessments/${id}`)
       .then(res => res.json())
       .then(data => {
         setAssessment(data);
@@ -18,7 +18,7 @@ function Questions() {
   }, [id]);
 
   function deleteKata(id) {
-    fetch(`https://hacheranck.onrender.com/assessment_katas/${id}`, {
+    fetch(`https://hackerank.onrender.com/assessment_katas/${id}`, {
       method: 'DELETE',
            headers: {
        "Content-Type": "application/json",
