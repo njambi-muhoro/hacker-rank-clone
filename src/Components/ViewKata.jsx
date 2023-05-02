@@ -25,7 +25,7 @@ function ViewKata() {
  
 
     useEffect(() => {
-     fetch(`http://localhost:3000/assessments/${id}`, {
+     fetch(`/assessments/${id}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -39,7 +39,7 @@ function ViewKata() {
 
     }, [id])
 function handleClick(id) {
-  fetch(`http://localhost:3000/katas/${id}`, {
+  fetch(`/katas/${id}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -93,7 +93,7 @@ function submitCode() {
   const passedTestsResult = testResult.passedTestsResult;
 
   // Check if a similar submission exists for the current user, assessment, and kata
-  fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata_id}`, {
+  fetch(`/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata_id}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
@@ -110,7 +110,7 @@ function submitCode() {
         window.alert('You have already submitted a solution for this kata.');
       } else {
         // Submit the code
-        fetch('http://localhost:3000/submissions', {
+        fetch(`/submissions`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ function submitCode() {
   const passedTestsResult = testResult.passedTestsResult;
 
 // Check if a similar submission exists for the current user, assessment, and kata
-fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata_id}`, {
+fetch(`/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata_id}`, {
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
@@ -172,7 +172,7 @@ fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment
       window.alert('You have already submitted a solution for this kata.');
     } else {
       // Submit the code
-      fetch('http://localhost:3000/submissions', {
+      fetch(`/submissions`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -221,7 +221,7 @@ fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment
   if (assessment.timer === 0) {
     const katas = assessment.katas;
     katas.forEach((kata) => {
-      fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata.id}`, {
+      fetch(`/check?user_id=${user_id}&assessment_id=${assessment_id}&kata_id=${kata.id}`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${sessionStorage.getItem('jwtToken')}`
@@ -238,7 +238,7 @@ fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment
             const testResult = runTests(kata, code);
             const percentage = testResult.percentage;
             const passedTestsResult = testResult.passedTestsResult;
-            fetch('http://localhost:3000/submissions', {
+            fetch(`/submissions`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

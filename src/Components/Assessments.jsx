@@ -33,7 +33,7 @@ function Assessments() {
 const handleSubmit = (e) => {
   e.preventDefault();
   // handle submission logic here
- fetch(`http://localhost:3000/assessments`,{
+ fetch(`/assessments`,{
   method: "POST",
   headers:{
     "Content-Type": "application/json",
@@ -112,7 +112,7 @@ const handleSubmit = (e) => {
     .then(res => res.json())
     .then(data => setKatas(data));
      
- fetch(`http://localhost:3000/assessments?userId=${userId}`, {
+ fetch(`/assessments?userId=${userId}`, {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -136,7 +136,7 @@ function handleAddClick(id) {
 function handleKataSelect( id) {
     const kata_id = id
     
-  fetch(`http://localhost:3000/assessment_katas`, {
+  fetch(`/assessment_katas`, {
     method:'POST',
     headers:{
       "Content-Type": "application/json",
@@ -175,7 +175,7 @@ function deleteAssessment(id) {
 
   
   useEffect(() => {
-    fetch(`http://localhost:3000/invitations`, {
+    fetch(`/invitations`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
