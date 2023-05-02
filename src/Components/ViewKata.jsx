@@ -193,23 +193,24 @@ fetch(`http://localhost:3000/check?user_id=${user_id}&assessment_id=${assessment
           }
           return response.json();
         })
-        .then(data => {
+     .then(data => {
+  window.alert('Submission successful!');
   const currentKataIndex = assessment.katas.findIndex(kata => kata.id === kata_id);
   if (currentKataIndex === assessment.katas.length - 1) {
     window.alert('Congratulations, you have completed all the katas!');
-     // Redirect to the next kata
-      window.location.href = `/submissions/${assessment.id}`;
+  window.location.href = `/submissions/${assessment.id}`;
   } else {
     const nextKataIndex = currentKataIndex + 1;
     const nextKataId = assessment.katas[nextKataIndex].id;
     window.alert('Submission successful! Proceeding to the next kata.');
-   
+    
   }
 })
-        .catch(error => {
-          window.alert('Submission failed. Please try again.');
-          console.error('Error:', error);
-        });
+.catch(error => {
+  window.alert('Submission failed. Please try again.');
+  console.error('Error:', error);
+});
+
     }
   })
   .catch(error => {
