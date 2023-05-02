@@ -211,35 +211,39 @@ const seconds = remainingTime % 60;
 const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
   return (
-    <div className='min-h-screen bg-gray-100 items-center mt-[10vh]' style={{ minHeight: '100vh' }}>
+    <div className='min-h-screen items-center mt-[10vh]' style={{ minHeight: '100vh' }}>
 {!isStarted && (
+ 
     <button
-      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white px-6 py-3 font-bold"
+      className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#077407] text-white px-6 py-3 font-bold rounded-lg"
       onClick={startTimer}
     >
       Start assessment <br/>Time: {assessment.duration} minutes
     </button>
+   
   )}
 
       {isStarted && (
-        <div className="lg:max-w-6xl mx-auto sm:px-6 lg:px-8">
+        
+        <div className="mx-auto sm:px-6 lg:px-8">
+           <p className='text-[#077407] font-bold flex mt-[11vh] my-2 text-xl'>Remaining Time:<span className='text-red-600 bg-gray-200 rounded-full px-4 py-1 ml-3'> {formattedTime}</span></p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-4 mt-32 mb-6  bg-slate-900 text-white">
-              <h2>
-                {assessment.title} :   <div className="my-2 text-white">
-                <p>Remaining Time: {formattedTime}</p>
+            <div className="p-4 mt-10 mb-6 bg-gray-100 text-white rounded-lg">
+              <div >
+               <p className='text-2xl font-bold text-black '>{assessment.title}  </p>    <div className="my-2 text-xl">
+
               </div>
-              </h2>
+              </div>
               <div className="ml-5">
                 {assessment.katas &&
                   assessment.katas.map((kata, index) => (
                     <div key={index}>
-                      <button className="text-white" onClick={() => handleClick(kata.id)}>
+                      <button className="text-blue-900 font-bold" onClick={() => handleClick(kata.id)}>
                         {kata.name}
                       </button>
                     </div>
                   ))}
-                <div className="my-2 text-white">
+                <div className="my-2 text-black">
                   <p>{kata.description}</p>
                 </div>
                 <div className="my-2 text-white">
@@ -247,7 +251,7 @@ const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString
                 </div>
               </div>
             </div>
-            <div className="p-4 mt-32 mb-6 mx-6  bg-slate-900 flex justify-center">
+            <div className="p-4 mt-10 mb-6 mx-6  bg-slate-700 flex justify-center rounded-lg">
               <div className="w-full max-w-full h-full">
                 <CodeMirror
                   value={code}
@@ -257,28 +261,28 @@ const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString
                   extensions={[javascript({ jsx: true })]}
                   onChange={onChange}
                 />
-                <button className="bg-green-500 text-white p-2 m-2" onClick={() => runTests(kata, code)}>
+                <button className="bg-[#077407] text-white p-2 m-2 rounded-lg" onClick={() => runTests(kata, code)}>
                   Run tests
                 </button>
-                <button className="bg-green-500 max-w-sm m-2 p-2 text-white " onClick={submitCode}>
+                <button className="bg-[#077407] max-w-sm m-2 p-2 text-white rounded-lg" onClick={submitCode}>
                   Submit
                 </button>
                 <div>
                   <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                     <thead>
-                      <tr>
-                        <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Test Case #</th>
-                        <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Input</th>
-                        <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Expected Output</th>
-                        <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Gotten Output</th>
-                        <th style={{ backgroundColor: '#f2f2f2', borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Test Result</th>
+                      <tr className='bg-[#f2f2f2] '>
+                        <th style={{  borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Test Case #</th>
+                        <th style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Input</th>
+                        <th style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Expected Output</th>
+                        <th style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Gotten Output</th>
+                        <th style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>Test Result</th>
                       </tr>
                     </thead>
                     <tbody>
                       {results && results.map((result, index) => (
-                        <tr key={index}>
-                          <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{index + 1}</td>
-                          <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{JSON.stringify(result.input)}</td>
+                        <tr key={index} className="text-white">
+                          <td style={{ borderBottom: '1px solid #ddd', padding: '2px', textAlign: 'left' }}>{index + 1}</td>
+                          <td style={{ borderBottom: '1px solid #ddd', padding: '0px', textAlign: 'left' }}>{JSON.stringify(result.input)}</td>
                           <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{JSON.stringify(result.expectedOutput)}</td>
                           <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left' }}>{JSON.stringify(result.userOutput)}</td>
                           <td style={{ borderBottom: '1px solid #ddd', padding: '8px', textAlign: 'left', color: result.testPassed ? 'green' : 'red' }}>{result.testPassed ? 'Passed' : 'Failed'}</td>

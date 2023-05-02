@@ -5,25 +5,25 @@ function Solutions() {
         <div>
           <div>
             <header>
-              <div className="mb-10 text-center  text-4xl mt-40">
+              <div className="mb-10 text-center font-bold text-4xl mt-40">
               HackerRank Projects
                 
               </div>
             </header>
            
     
-            <p className="text-center font-medium text-xl text-gray-500">
+            <p className="text-center font-medium text-xl text-gray-600">
             Real–world scenarios for your most technical hires
             </p>
 
-            <p className="text-center font-medium text-xl text-gray-500">
+            <p className="text-center font-medium text-xl text-gray-600">
             Assess role-specific skills with full access to complete application environments
             </p>
 
             <div className="flex justify-center gap-4 mt-10">
             <button
               type="button"
-              className="px-9 py-2.5 mr-2 mb-2 text-sm font-medium bg-green-600 text-white rounded-md"
+              className="px-9 py-2.5 mr-2 mb-2 text-sm font-medium bg-[#077407] text-white rounded-md"
             >{" "}
               Request Demo
               {" "}

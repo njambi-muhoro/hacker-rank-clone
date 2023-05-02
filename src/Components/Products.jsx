@@ -5,14 +5,14 @@ function Products() {
     <div>
       <div>
         <header>
-          <div className="mb-10 text-center font-bold  text-gray-600 text-6xl mt-40">
+          <div className="mb-10 text-center font-bold  text-6xl mt-40 font-serif">
             Code, create, and innovate <br />with live coding interviews
             
           </div>
         </header>
        
 
-        <p className="text-center font-medium text-xl text-gray-500">
+        <p className="text-center font-medium text-xl text-gray-600">
           75% of devs think technical interviews are broken. Swap your shared
           docs
           <br />
@@ -26,9 +26,9 @@ function Products() {
         <div className="flex justify-center gap-4 mt-10 text-color-white">
         <button
           type="button"
-          className="px-9 py-2.5 mr-2 mb-2 text-sm font-medium bg-green-600 text-white rounded-md"
+          className="px-9 py-2.5 mr-2 mb-2 text-sm font-medium bg-[#077407] text-white rounded-md"
         >{" "}
-          Get Demo
+          Request Demo
           {" "}
         </button>
         </div>

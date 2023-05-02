@@ -321,10 +321,10 @@ const DashBoard = () => {
 										style={{ height: "400px", minWidth:"450px" }}
 									>
 										<div class='border-b-2 flex text-center justify-between align-items-center border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50'>
-											<p>Assessments(0)</p>
+											<p className='font-bold'>Assessments(0)</p>
 											<Link to = "/assessments">
 											<button
-												style={{ color: "green", padding: "10px" }}
+												style={{ color:"green", padding: "10px" }}
 												class='flex gap-1 items-center'
 												type='button'
 
@@ -335,6 +335,7 @@ const DashBoard = () => {
 											</Link>
 										</div>
 										<div class='p-6 text-center mt-10 pt-10'>
+										<div className='mb-10'>
 											<h5 class='mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50'>
 												Let's get started!
 											</h5>
@@ -342,6 +343,7 @@ const DashBoard = () => {
 												Click below to make your
 												Assessments.
 											</p>
+											</div>
 											<div class='flex justify-center align-items-center'>
 											<Link to = "/assessments">
 												<button
@@ -353,7 +355,7 @@ const DashBoard = () => {
 														paddingTop: "7px",
 														paddingBottom: "7px",
 													}}
-													class='flex gap-1 items-center bg-green-500 text-white'
+													class='flex gap-1 items-center bg-[#077407] text-white rounded-lg'
 													type='button'
 												>
 													<BsPlusCircle />
@@ -370,7 +372,7 @@ const DashBoard = () => {
 										style={{ height: "400px" }}
 									>
 										<div class='border-b-2 flex text-center justify-between align-items-center border-neutral-100 px-6 py-3 dark:border-neutral-600 dark:text-neutral-50'>
-											<p>Tests(0)</p>
+											<p className='font-bold'>Tests(0)</p>
 											<button
 												style={{ color: "green", padding: "10px" }}
 												class='flex gap-1 items-center'
@@ -381,14 +383,16 @@ const DashBoard = () => {
 											</button>
 										</div>
 										<div class='p-6 text-center mt-10 pt-10'>
+											<div className='mb-10'>
 											<h5 class='mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50'>
 												Let's get started!
 											</h5>
-											<p class='mb-4 text-base text-neutral-600 dark:text-neutral-200'>
+											<p class='mb-4 text-base text-neutral-600 dark:text-neutral-200 '>
 												You haven’t created any tests, click below to make your
 												first one.
 											</p>
-											<div class='flex justify-center align-items-center'>
+											</div>
+											<div class='flex justify-center align-items-center mt-10'>
 												<button
 													style={{
 														paddingLeft: "30px",
@@ -398,7 +402,7 @@ const DashBoard = () => {
 														paddingTop: "7px",
 														paddingBottom: "7px",
 													}}
-													class='flex gap-1 items-center bg-green-500 text-white'
+													class='flex gap-1 items-center bg-[#077407] text-white rounded-lg'
 													type='button'
 												>
 													<BsPlusCircle />
