@@ -32,7 +32,8 @@ function Candidates() {
      .then(res => res.json())
      .then(response => {
        console.log(response)
-      setModalIsOpen(false); // close the modal
+       setModalIsOpen(false); // close the modal
+       window.location.reload()
 
    })
   }

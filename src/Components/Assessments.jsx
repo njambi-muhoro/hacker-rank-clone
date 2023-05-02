@@ -65,7 +65,7 @@ const handleSubmit = (e) => {
       icon: 'success',
       title: 'Assessment created successfully'
     })
-    window.location.reload();
+  
   } else if (response.status === 'error') {
     const Toast = Swal.mixin({
       toast: true,
@@ -83,6 +83,7 @@ const handleSubmit = (e) => {
       title: response.message
     })
   }
+       window.location.reload();
 })
 .catch(error => {
   console.log(error);

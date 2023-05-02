@@ -57,7 +57,7 @@ const circumference = 2 * Math.PI * 30;
         ))}</div>
 <div className='relative mx-4 rounded-lg w-1/4 shadow-md p-2 hover:shadow-lg transition duration-300 ease-in-out mt-10 bg-white px-4'>
   <h1 className='font-medium'>Total score</h1>
-  <div x-data="scrollProgress" class="absolute inset-0 flex items-center justify-end px-4">
+  <div x-data="scrollProgress" class="absolute inset-0 flex items-center justify-center px-4">
     <svg class="w-20 h-20">
       <circle
         class="text-gray-300"
