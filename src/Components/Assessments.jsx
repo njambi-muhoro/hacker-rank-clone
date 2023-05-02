@@ -33,7 +33,7 @@ function Assessments() {
 const handleSubmit = (e) => {
   e.preventDefault();
   // handle submission logic here
- fetch(`/assessments`,{
+ fetch(`https://hacheranck.onrender.com/assessments`,{
   method: "POST",
   headers:{
     "Content-Type": "application/json",
@@ -108,11 +108,11 @@ const handleSubmit = (e) => {
     useEffect(() => {
   
   // fetch katas
-  fetch('http://localhost:3000/katas')
+  fetch(`https://hacheranck.onrender.com/katas`)
     .then(res => res.json())
     .then(data => setKatas(data));
      
- fetch(`/assessments?userId=${userId}`, {
+ fetch(`https://hacheranck.onrender.com/assessments?userId=${userId}`, {
   method: "GET",
   headers: {
     "Content-Type": "application/json",
@@ -136,7 +136,7 @@ function handleAddClick(id) {
 function handleKataSelect( id) {
     const kata_id = id
     
-  fetch(`/assessment_katas`, {
+  fetch(`https://hacheranck.onrender.com/assessment_katas`, {
     method:'POST',
     headers:{
       "Content-Type": "application/json",
@@ -152,7 +152,7 @@ function handleKataSelect( id) {
 }
 
 function deleteAssessment(id) {
-  fetch(`/assessments/${id}`, {
+  fetch(`https://hacheranck.onrender.com/assessments/${id}`, {
     method: 'DELETE',
     headers: {
       "Content-Type": "application/json",
@@ -175,7 +175,7 @@ function deleteAssessment(id) {
 
   
   useEffect(() => {
-    fetch(`/invitations`, {
+    fetch(`https://hacheranck.onrender.com/invitations`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
