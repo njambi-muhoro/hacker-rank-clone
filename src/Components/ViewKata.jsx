@@ -300,7 +300,7 @@ useEffect(() => {
 
 function startTimer() {
   setIsStarted(true);
-  setRemainingTime(assessment.duration ); // convert minutes to seconds
+  setRemainingTime(assessment.duration * 60); // convert minutes to seconds
 }
 
 
