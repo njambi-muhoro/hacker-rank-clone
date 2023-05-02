@@ -14,7 +14,7 @@ export default function AuthProvider({children})
 
     // login
     const login = (email, password) =>{
-        fetch(`/login`,{
+        fetch(`https://hacheranck.onrender.com/login`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -81,7 +81,7 @@ export default function AuthProvider({children})
     const register = (username, email, userType, password) => {
          console.log("userType:", userType); // add this line to debug
 
-        fetch(`/users`,{
+        fetch(`https://hacheranck.onrender.com/users`,{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
