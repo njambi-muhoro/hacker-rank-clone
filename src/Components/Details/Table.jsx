@@ -7,7 +7,7 @@ function Table() {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`/assessments/${id}`, {
+    fetch(`https://hacheranck.onrender.com/assessments/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
@@ -25,7 +25,7 @@ function Table() {
 
 
   function deleteInvitation(id) {
-      fetch(`/invitations/${id}`, {
+      fetch(`https://hacheranck.onrender.com/invitations/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
